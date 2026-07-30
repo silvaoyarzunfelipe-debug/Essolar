@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit solar | essolar.cl</title>
+  <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+
+<header class="header">
+  <div class="contenedor header-inner">
+    <a href="index.html" class="logo"><span class="sol">☀</span><span class="es">es</span>solar.cl</a>
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="tienda.html" class="activo">Tienda</a>
+      <a href="tienda.html?sistema=Off-Grid">Kits Off-Grid</a>
+      <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#como-elegir">¿Cómo elegir?</a>
+    </nav>
+    <a href="cotizacion.html" class="header-cta">Solicitar cotización</a>
+  </div>
+</header>
+
+<section class="seccion">
+  <div class="contenedor" id="ficha-cont">
+    <p>Cargando kit…</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div>
+        <h4>essolar.cl</h4>
+        <p style="font-size:0.9rem;">Kits solares con respaldo de ingeniería eléctrica. Equipos GoodWe, dimensionamiento serio y tramitación SEC como servicio.</p>
+      </div>
+      <div>
+        <h4>Tienda</h4>
+        <a href="tienda.html?sistema=Off-Grid">Kits Off-Grid</a>
+        <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
+        <a href="tienda.html">Todos los kits</a>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="index.html#servicios">Instalación</a>
+        <a href="index.html#servicios">Flete y paletizado</a>
+        <a href="index.html#servicios">Tramitación SEC (TE-1/TE-4)</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="cotizacion.html">Solicitar cotización</a>
+        <a href="mailto:contacto@essolar.cl">contacto@essolar.cl</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Precios de kits solo equipos, IVA incluido. Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna. Las estimaciones de generación y ahorro son referenciales; la configuración final se valida en visita técnica.</p>
+      <p style="margin-top:8px;">© 2026 essolar.cl — Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+  const sku = new URLSearchParams(location.search).get("sku");
+  const p = ESSOLAR_PRODUCTS.find(x => x.sku === sku) || ESSOLAR_PRODUCTS[0];
+  document.title = `${p.nombre} · ${p.resumen.split("·")[0].trim()} | essolar.cl`;
+
+  const filaBateria = p.batKwh > 0
+    ? `<tr><td>Batería de litio GoodWe Lynx</td><td>${String(p.batKwh).replace(".", ",")} kWh</td></tr>`
+    : `<tr><td>Batería</td><td>No incluye (inversor preparado para ampliar)</td></tr>`;
+
+  const garantia = p.batKwh > 0
+    ? `${ESSOLAR_CONFIG.garantiaInversor} · ${ESSOLAR_CONFIG.garantiaBateria} · ${ESSOLAR_CONFIG.garantiaPaneles}`
+    : `${ESSOLAR_CONFIG.garantiaInversor} · ${ESSOLAR_CONFIG.garantiaPaneles}`;
+
+  const tipoSistema = p.sistema === "Off-Grid"
+    ? "Off-Grid híbrido (admite generador)"
+    : "Conectado a red con netbilling (Ley 21.118)";
+
+  document.getElementById("ficha-cont").innerHTML = `
+    <p style="font-size:0.85rem;"><a href="tienda.html">← Volver a la tienda</a></p>
+    <div class="ficha">
+      <div>
+        <div class="badges" style="display:flex;gap:8px;margin-bottom:12px;">
+          <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
+          <span class="badge marca">GoodWe</span>
+          <span class="badge">SKU ${p.sku}</span>
+        </div>
+        <h1>${p.nombre}</h1>
+        <p class="resumen">${p.resumen}</p>
+        <p class="precio-grande">${clp(p.precio)}<small>Solo equipos · IVA incluido</small></p>
+        <div class="aviso-aparte">⚠ Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna.</div>
+        <div class="ficha-acciones">
+          <a class="btn btn-sol" id="btn-cotizar" href="cotizacion.html?sku=${p.sku}">Cotizar este kit</a>
+          <a class="btn btn-verde" href="https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?")}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+        </div>
+        <div class="serv-adicionales">
+          <h3>Servicios adicionales disponibles</h3>
+          <label><input type="checkbox" class="serv-check" value="Instalación"> <span><strong>Instalación profesional</strong><small>Montaje, protecciones y puesta en marcha. Se cotiza según comuna y tipo de techo.</small></span></label>
+          <label><input type="checkbox" class="serv-check" value="Flete y paletizado"> <span><strong>Flete y paletizado</strong><small>Despacho seguro de los equipos a tu comuna.</small></span></label>
+          <label><input type="checkbox" class="serv-check" value="Tramitación SEC"> <span><strong>Tramitación SEC (${p.sistema === "Off-Grid" ? "TE-1" : "TE-4 + netbilling"})</strong><small>Declaración eléctrica y puesta en servicio reglamentaria.</small></span></label>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-size:1.2rem;color:var(--azul-900);">Descripción</h2>
+        <p style="margin-top:10px;">${p.desc}</p>
+        <table class="tabla-specs">
+          <tr><td>Inversor ${p.sistema === "Off-Grid" ? "híbrido" : "On-Grid híbrido"} GoodWe</td><td>${p.inversorKw} kW</td></tr>
+          <tr><td>Paneles</td><td>${p.paneles} × ${p.panelW} W (${String(p.kwp).replace(".", ",")} kWp)</td></tr>
+          ${filaBateria}
+          <tr><td>Tipo de sistema</td><td>${tipoSistema}</td></tr>
+          <tr><td>Garantía</td><td>${garantia}</td></tr>
+        </table>
+        <h2 style="font-size:1.2rem;color:var(--azul-900);margin-top:24px;">Ideal para</h2>
+        <ul class="lista-ideal">${p.ideal.map(i => `<li>${i}</li>`).join("")}</ul>
+        <div class="nota-tecnica">
+          <h3>📐 Nota técnica essolar</h3>
+          <p>${p.nota}</p>
+        </div>
+      </div>
+    </div>`;
+
+  // Los servicios marcados se arrastran al formulario de cotización
+  const btnCotizar = document.getElementById("btn-cotizar");
+  document.querySelectorAll(".serv-check").forEach(chk => {
+    chk.addEventListener("change", () => {
+      const marcados = Array.from(document.querySelectorAll(".serv-check:checked")).map(c => c.value);
+      const url = new URL(btnCotizar.href, location.href);
+      url.searchParams.set("sku", p.sku);
+      if (marcados.length) url.searchParams.set("servicios", marcados.join(","));
+      else url.searchParams.delete("servicios");
+      btnCotizar.href = url.pathname + url.search;
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda | essolar.cl — Kits solares On-Grid y Off-Grid</title>
+  <meta name="description" content="Catálogo de kits solares GoodWe en Chile: Off-Grid con batería de litio y On-Grid con netbilling. Filtra por potencia y sistema.">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+
+<header class="header">
+  <div class="contenedor header-inner">
+    <a href="index.html" class="logo"><span class="sol">☀</span><span class="es">es</span>solar.cl</a>
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="tienda.html" class="activo">Tienda</a>
+      <a href="tienda.html?sistema=Off-Grid">Kits Off-Grid</a>
+      <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#como-elegir">¿Cómo elegir?</a>
+    </nav>
+    <a href="cotizacion.html" class="header-cta">Solicitar cotización</a>
+  </div>
+</header>
+
+<section class="seccion">
+  <div class="contenedor">
+    <span class="kicker">Catálogo</span>
+    <h2>Kits solares disponibles</h2>
+    <p class="intro">Precios de kit solo equipos, IVA incluido. Instalación, flete y tramitación SEC se cotizan aparte según tu proyecto y comuna.</p>
+
+    <div class="filtros">
+      <label for="f-sistema">Sistema</label>
+      <select id="f-sistema">
+        <option value="">Todos</option>
+        <option value="Off-Grid">Off-Grid (con batería)</option>
+        <option value="On-Grid">On-Grid (conectado a red)</option>
+      </select>
+      <label for="f-kw">Potencia inversor</label>
+      <select id="f-kw">
+        <option value="">Todas</option>
+        <option value="3">3 kW</option>
+        <option value="4">4 kW</option>
+        <option value="5">5 kW</option>
+        <option value="6">6 kW</option>
+        <option value="8">8 kW</option>
+        <option value="12">12 kW</option>
+        <option value="16">16 kW</option>
+        <option value="24">24 kW</option>
+      </select>
+      <label for="f-orden">Ordenar</label>
+      <select id="f-orden">
+        <option value="relevancia">Relevancia</option>
+        <option value="precio-asc">Menor precio</option>
+        <option value="precio-desc">Mayor precio</option>
+        <option value="kw-asc">Menor a mayor kW</option>
+        <option value="kw-desc">Mayor a menor kW</option>
+      </select>
+      <span class="contador" id="contador"></span>
+    </div>
+
+    <div class="grid-kits" id="grid-tienda"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div>
+        <h4>essolar.cl</h4>
+        <p style="font-size:0.9rem;">Kits solares con respaldo de ingeniería eléctrica. Equipos GoodWe, dimensionamiento serio y tramitación SEC como servicio.</p>
+      </div>
+      <div>
+        <h4>Tienda</h4>
+        <a href="tienda.html?sistema=Off-Grid">Kits Off-Grid</a>
+        <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
+        <a href="tienda.html">Todos los kits</a>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="index.html#servicios">Instalación</a>
+        <a href="index.html#servicios">Flete y paletizado</a>
+        <a href="index.html#servicios">Tramitación SEC (TE-1/TE-4)</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="cotizacion.html">Solicitar cotización</a>
+        <a href="mailto:contacto@essolar.cl">contacto@essolar.cl</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Precios de kits solo equipos, IVA incluido. Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna. Las estimaciones de generación y ahorro son referenciales; la configuración final se valida en visita técnica.</p>
+      <p style="margin-top:8px;">© 2026 essolar.cl — Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const selSistema = document.getElementById("f-sistema");
+  const selKw = document.getElementById("f-kw");
+  const selOrden = document.getElementById("f-orden");
+  const grid = document.getElementById("grid-tienda");
+  const contador = document.getElementById("contador");
+  const kwMin = parseInt(params.get("kwMin") || "0", 10);
+
+  if (params.get("sistema")) selSistema.value = params.get("sistema");
+  if (params.get("kw")) selKw.value = params.get("kw");
+
+  function render() {
+    let lista = ESSOLAR_PRODUCTS.slice();
+    if (selSistema.value) lista = lista.filter(p => p.sistema === selSistema.value);
+    if (selKw.value) lista = lista.filter(p => p.inversorKw === parseInt(selKw.value, 10));
+    if (kwMin) lista = lista.filter(p => p.inversorKw >= kwMin);
+
+    const orden = selOrden.value;
+    if (orden === "precio-asc") lista.sort((a, b) => a.precio - b.precio);
+    if (orden === "precio-desc") lista.sort((a, b) => b.precio - a.precio);
+    if (orden === "kw-asc") lista.sort((a, b) => a.inversorKw - b.inversorKw);
+    if (orden === "kw-desc") lista.sort((a, b) => b.inversorKw - a.inversorKw);
+
+    contador.textContent = `Mostrando ${lista.length} de ${ESSOLAR_PRODUCTS.length} kits`;
+    grid.innerHTML = "";
+    lista.forEach(p => {
+      const el = document.createElement("div");
+      el.className = "kit";
+      el.innerHTML = `
+        <div class="badges">
+          <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
+          <span class="badge marca">GoodWe</span>
+        </div>
+        <h3>${p.nombre}</h3>
+        <p class="specs">${p.resumen}</p>
+        <p class="precio">${clp(p.precio)}<small>Solo equipos · IVA incluido</small></p>
+        <p class="nota-aparte">Instalación, flete y tramitación SEC se cotizan aparte.</p>
+        <div class="acciones">
+          <a class="btn btn-verde" href="producto.html?sku=${p.sku}">Ver kit</a>
+          <a class="btn btn-sol" href="cotizacion.html?sku=${p.sku}">Cotizar</a>
+        </div>`;
+      grid.appendChild(el);
+    });
+  }
+
+  selSistema.addEventListener("change", render);
+  selKw.addEventListener("change", render);
+  selOrden.addEventListener("change", render);
+  render();
+</script>
+
+</body>
+</html>

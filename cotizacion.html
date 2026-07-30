@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitar cotización | essolar.cl</title>
+  <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+
+<header class="header">
+  <div class="contenedor header-inner">
+    <a href="index.html" class="logo"><span class="sol">☀</span><span class="es">es</span>solar.cl</a>
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="tienda.html?sistema=Off-Grid">Kits Off-Grid</a>
+      <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#como-elegir">¿Cómo elegir?</a>
+    </nav>
+    <a href="cotizacion.html" class="header-cta">Solicitar cotización</a>
+  </div>
+</header>
+
+<section class="seccion">
+  <div class="contenedor">
+    <span class="kicker">Cotización</span>
+    <h2>Solicita tu cotización personalizada</h2>
+    <p class="intro">Cuéntanos qué kit te interesa y qué servicios necesitas. Un ingeniero eléctrico revisará tu caso y te responderá con una propuesta clara — sin costo ni compromiso.</p>
+
+    <form class="form-cotiza" id="form-cotiza">
+      <div class="fila-2">
+        <div class="campo">
+          <label for="c-nombre">Nombre *</label>
+          <input type="text" id="c-nombre" required autocomplete="name">
+        </div>
+        <div class="campo">
+          <label for="c-telefono">Teléfono *</label>
+          <input type="tel" id="c-telefono" required autocomplete="tel" placeholder="+56 9 ...">
+        </div>
+      </div>
+      <div class="fila-2">
+        <div class="campo">
+          <label for="c-email">Correo *</label>
+          <input type="email" id="c-email" required autocomplete="email">
+        </div>
+        <div class="campo">
+          <label for="c-comuna">Comuna / Región *</label>
+          <input type="text" id="c-comuna" required placeholder="Ej: Puerto Montt, Los Lagos">
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="c-kit">Kit de interés</label>
+        <select id="c-kit">
+          <option value="">Aún no lo decido — necesito asesoría</option>
+        </select>
+      </div>
+
+      <div class="campo grupo-check">
+        <span class="titulo">Servicios adicionales</span>
+        <label><input type="checkbox" name="servicio" value="Instalación"> Instalación profesional</label>
+        <label><input type="checkbox" name="servicio" value="Flete y paletizado"> Flete y paletizado</label>
+        <label><input type="checkbox" name="servicio" value="Tramitación SEC"> Tramitación SEC (TE-1 / TE-4)</label>
+      </div>
+
+      <div class="campo" style="margin-top:18px;">
+        <label for="c-tipo">Tipo de proyecto</label>
+        <select id="c-tipo">
+          <option value="Residencial">Residencial</option>
+          <option value="Comercial">Comercial</option>
+          <option value="Agrícola / bombeo">Agrícola / bombeo</option>
+          <option value="Off-Grid (sin red)">Off-Grid (sin red)</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="c-detalle">Detalles del proyecto (opcional)</label>
+        <textarea id="c-detalle" placeholder="Consumo estimado o monto de tu cuenta de luz, ubicación, plazos, tipo de techo…"></textarea>
+      </div>
+
+      <div class="resumen-cotiza" id="resumen">
+        <h3>Resumen de tu solicitud</h3>
+        <ul id="resumen-lista"><li>Selecciona un kit o describe tu proyecto.</li></ul>
+      </div>
+
+      <div class="form-acciones">
+        <button type="submit" class="btn btn-sol">Solicitar cotización</button>
+        <button type="button" class="btn btn-verde" id="btn-wsp">Continuar por WhatsApp</button>
+      </div>
+      <p style="font-size:0.8rem;color:var(--gris-600);margin-top:12px;">Al enviar se abrirá tu correo o WhatsApp con el mensaje preparado — revísalo antes de enviarlo. No almacenamos tus datos en este sitio.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div>
+        <h4>essolar.cl</h4>
+        <p style="font-size:0.9rem;">Kits solares con respaldo de ingeniería eléctrica. Equipos GoodWe, dimensionamiento serio y tramitación SEC como servicio.</p>
+      </div>
+      <div>
+        <h4>Tienda</h4>
+        <a href="tienda.html?sistema=Off-Grid">Kits Off-Grid</a>
+        <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
+        <a href="tienda.html">Todos los kits</a>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="index.html#servicios">Instalación</a>
+        <a href="index.html#servicios">Flete y paletizado</a>
+        <a href="index.html#servicios">Tramitación SEC (TE-1/TE-4)</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="cotizacion.html">Solicitar cotización</a>
+        <a href="mailto:contacto@essolar.cl">contacto@essolar.cl</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Precios de kits solo equipos, IVA incluido. Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna. Las estimaciones de generación y ahorro son referenciales; la configuración final se valida en visita técnica.</p>
+      <p style="margin-top:8px;">© 2026 essolar.cl — Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const selKit = document.getElementById("c-kit");
+
+  // Poblar selector de kits
+  ESSOLAR_PRODUCTS.forEach(p => {
+    const op = document.createElement("option");
+    op.value = p.sku;
+    op.textContent = `${p.nombre} — ${p.resumen.split("·").slice(0, 2).join("·").trim()} — ${clp(p.precio)}`;
+    selKit.appendChild(op);
+  });
+
+  // Precarga desde ficha de producto
+  if (params.get("sku")) selKit.value = params.get("sku");
+  if (params.get("servicios")) {
+    params.get("servicios").split(",").forEach(s => {
+      const chk = document.querySelector(`input[name="servicio"][value="${s}"]`);
+      if (chk) chk.checked = true;
+    });
+  }
+
+  function serviciosMarcados() {
+    return Array.from(document.querySelectorAll('input[name="servicio"]:checked')).map(c => c.value);
+  }
+
+  function actualizarResumen() {
+    const lista = document.getElementById("resumen-lista");
+    const items = [];
+    const p = ESSOLAR_PRODUCTS.find(x => x.sku === selKit.value);
+    if (p) items.push(`<strong>${p.nombre}</strong> (${p.sku}) — ${clp(p.precio)} solo equipos`);
+    else items.push("Kit por definir con asesoría");
+    const servs = serviciosMarcados();
+    if (servs.length) items.push("Servicios: " + servs.join(", ") + " (se cotizan según proyecto)");
+    else items.push("Sin servicios adicionales seleccionados");
+    const tipo = document.getElementById("c-tipo").value;
+    items.push("Tipo de proyecto: " + tipo);
+    lista.innerHTML = items.map(i => `<li>${i}</li>`).join("");
+  }
+
+  selKit.addEventListener("change", actualizarResumen);
+  document.getElementById("c-tipo").addEventListener("change", actualizarResumen);
+  document.querySelectorAll('input[name="servicio"]').forEach(c => c.addEventListener("change", actualizarResumen));
+  actualizarResumen();
+
+  function construirMensaje() {
+    const p = ESSOLAR_PRODUCTS.find(x => x.sku === selKit.value);
+    const lineas = [
+      "Solicitud de cotización — essolar.cl",
+      "",
+      "Nombre: " + document.getElementById("c-nombre").value,
+      "Teléfono: " + document.getElementById("c-telefono").value,
+      "Correo: " + document.getElementById("c-email").value,
+      "Comuna/Región: " + document.getElementById("c-comuna").value,
+      "",
+      "Kit de interés: " + (p ? `${p.nombre} (${p.sku}) — ${clp(p.precio)} solo equipos` : "Por definir, necesito asesoría"),
+      "Servicios adicionales: " + (serviciosMarcados().join(", ") || "Ninguno"),
+      "Tipo de proyecto: " + document.getElementById("c-tipo").value
+    ];
+    const det = document.getElementById("c-detalle").value.trim();
+    if (det) lineas.push("", "Detalles: " + det);
+    return lineas.join("\n");
+  }
+
+  document.getElementById("form-cotiza").addEventListener("submit", e => {
+    e.preventDefault();
+    const asunto = encodeURIComponent("Cotización kit solar — " + (selKit.value || "asesoría"));
+    location.href = `mailto:${ESSOLAR_CONFIG.email}?subject=${asunto}&body=${encodeURIComponent(construirMensaje())}`;
+  });
+
+  document.getElementById("btn-wsp").addEventListener("click", () => {
+    const form = document.getElementById("form-cotiza");
+    if (!form.reportValidity()) return;
+    window.open(`https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent(construirMensaje())}`, "_blank");
+  });
+</script>
+
+</body>
+</html>
