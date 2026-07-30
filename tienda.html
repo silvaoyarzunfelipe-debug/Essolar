@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda | essolar.cl — Kits solares On-Grid y Off-Grid</title>
   <meta name="description" content="Catálogo de kits solares GoodWe en Chile: Off-Grid con batería de litio y On-Grid con netbilling. Filtra por potencia y sistema.">
-  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
 
@@ -96,7 +96,7 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=2"></script>
+<script src="js/data.js?v=3"></script>
 <script>
   const params = new URLSearchParams(location.search);
   const selSistema = document.getElementById("f-sistema");
@@ -126,20 +126,7 @@
     lista.forEach(p => {
       const el = document.createElement("div");
       el.className = "kit";
-      el.innerHTML = `
-        <div class="kit-img">${svgCasaKit(p)}</div>
-        <div class="badges">
-          <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
-          <span class="badge marca">GoodWe</span>
-        </div>
-        <h3>${p.nombre}</h3>
-        <p class="specs">${p.resumen}</p>
-        <p class="precio">${clp(p.precio)}<small>Solo equipos · IVA incluido</small></p>
-        <p class="nota-aparte">Instalación, flete y tramitación SEC se cotizan aparte.</p>
-        <div class="acciones">
-          <a class="btn btn-verde" href="producto.html?sku=${p.sku}">Ver kit</a>
-          <a class="btn btn-sol" href="cotizacion.html?sku=${p.sku}">Cotizar</a>
-        </div>`;
+      el.innerHTML = plantillaKit(p);
       grid.appendChild(el);
     });
   }

@@ -242,3 +242,102 @@ function svgCasaKit(p) {
     ${extra}
   </svg>`;
 }
+
+// Banner tipo flyer del kit: componentes (panel / inversor / batería) sobre fondo oscuro.
+function svgKitBanner(p) {
+  const watts = (p.inversorKw * 1000).toLocaleString("es-CL");
+  const conBat = p.batKwh > 0;
+  const batTxt = String(p.batKwh).replace(".", ",");
+  // posiciones: 3 columnas con batería, 2 sin batería
+  const cx = conBat ? [90, 200, 310] : [130, 270];
+  const items = [];
+  // Panel solar
+  items.push(`<g transform="translate(${cx[0] - 42},96)">
+    <rect width="84" height="104" rx="4" fill="#122c47" stroke="#3b6ea5" stroke-width="2.5"/>
+    <g stroke="#2e5f8a" stroke-width="1.4">
+      <line x1="28" y1="0" x2="28" y2="104"/><line x1="56" y1="0" x2="56" y2="104"/>
+      <line x1="0" y1="26" x2="84" y2="26"/><line x1="0" y1="52" x2="84" y2="52"/><line x1="0" y1="78" x2="84" y2="78"/>
+    </g>
+    <rect width="84" height="104" rx="4" fill="none" stroke="#5e8fc0" stroke-width="1" opacity="0.6"/>
+  </g>
+  <text x="${cx[0]}" y="218" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" font-family="Arial, sans-serif">${p.paneles} PANELES ${p.panelW} W</text>`);
+  // Inversor
+  items.push(`<g transform="translate(${cx[1] - 38},104)">
+    <rect width="76" height="92" rx="8" fill="#f4f6f8" stroke="#c9d3de" stroke-width="2"/>
+    <rect x="14" y="14" width="48" height="26" rx="3" fill="#0b1f33"/>
+    <text x="38" y="31" text-anchor="middle" fill="#f5a623" font-size="11" font-weight="700" font-family="Arial, sans-serif">${p.inversorKw} kW</text>
+    <circle cx="24" cy="58" r="5" fill="#f5a623"/>
+    <circle cx="40" cy="58" r="5" fill="#1fae5a"/>
+    <rect x="14" y="72" width="48" height="6" rx="3" fill="#c9d3de"/>
+  </g>
+  <text x="${cx[1]}" y="218" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" font-family="Arial, sans-serif">INVERSOR ${p.inversorKw} kW MPPT</text>`);
+  // Batería
+  if (conBat) {
+    items.push(`<g transform="translate(${cx[2] - 32},100)">
+      <rect width="64" height="96" rx="8" fill="#f4f6f8" stroke="#c9d3de" stroke-width="2"/>
+      <rect x="0" y="30" width="64" height="12" fill="#f5a623"/>
+      <text x="32" y="66" text-anchor="middle" fill="#0b1f33" font-size="12" font-weight="800" font-family="Arial, sans-serif">${batTxt}</text>
+      <text x="32" y="80" text-anchor="middle" fill="#55637a" font-size="8" font-weight="700" font-family="Arial, sans-serif">kWh LiFePO4</text>
+      <rect x="18" y="8" width="28" height="8" rx="4" fill="#c9d3de"/>
+    </g>
+    <text x="${cx[2]}" y="218" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" font-family="Arial, sans-serif">BATERÍA LITIO ${batTxt} kWh</text>`);
+  }
+  const badge = p.sistema === "Off-Grid" ? "OFF-GRID HÍBRIDO" : "ON-GRID · NETBILLING";
+  return `<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${p.nombre}: componentes del kit">
+    <defs>
+      <linearGradient id="fondoKit-${p.sku}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0e2438"/><stop offset="1" stop-color="#081826"/>
+      </linearGradient>
+    </defs>
+    <rect width="400" height="260" fill="url(#fondoKit-${p.sku})"/>
+    <g stroke="#16324d" stroke-width="1"><line x1="0" y1="240" x2="400" y2="150"/><line x1="0" y1="260" x2="400" y2="190"/></g>
+    <circle cx="368" cy="96" r="46" fill="#f5a623" opacity="0.10"/>
+    <g transform="translate(16,14)">
+      <circle cx="11" cy="11" r="7" fill="#f5a623"/>
+      <g stroke="#f5a623" stroke-width="2" stroke-linecap="round">
+        <line x1="11" y1="0" x2="11" y2="2"/><line x1="11" y1="20" x2="11" y2="22"/>
+        <line x1="0" y1="11" x2="2" y2="11"/><line x1="20" y1="11" x2="22" y2="11"/>
+      </g>
+      <text x="28" y="16" fill="#ffffff" font-size="14" font-weight="800" letter-spacing="2" font-family="Arial, sans-serif">ESOLAR</text>
+    </g>
+    <g>
+      <rect x="252" y="14" width="134" height="22" rx="11" fill="none" stroke="#f5a623" stroke-width="1.5"/>
+      <text x="319" y="29" text-anchor="middle" fill="#f5a623" font-size="10" font-weight="800" font-family="Arial, sans-serif">${badge}</text>
+    </g>
+    <text x="200" y="76" text-anchor="middle" font-family="Arial, sans-serif">
+      <tspan fill="#ffffff" font-size="27" font-weight="800">KIT SOLAR </tspan><tspan fill="#f5a623" font-size="27" font-weight="800">${watts} W</tspan>
+    </text>
+    ${items.join("")}
+    <text x="200" y="246" text-anchor="middle" fill="#8fb3d4" font-size="9" font-weight="700" letter-spacing="1" font-family="Arial, sans-serif">EQUIPOS GOODWE · INCLUYE SET DE MONTAJE, CABLES Y PROTECCIONES</text>
+  </svg>`;
+}
+
+// Card de kit compartida entre home y tienda.
+function plantillaKit(p) {
+  const batChip = p.batKwh > 0
+    ? `<span><strong>Batería:</strong> ${String(p.batKwh).replace(".", ",")} kWh</span>`
+    : `<span><strong>Batería:</strong> ampliable</span>`;
+  const wsp = `https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?")}`;
+  return `
+    <div class="kit-img">${svgKitBanner(p)}</div>
+    <div class="badges">
+      <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
+      <span class="badge marca">GoodWe</span>
+    </div>
+    <h3>${p.nombre}</h3>
+    <div class="chips">
+      <span><strong>Inversor:</strong> ${p.inversorKw} kW</span>
+      <span><strong>Paneles:</strong> ${p.paneles} × ${p.panelW} W</span>
+      ${batChip}
+    </div>
+    <div class="bloque-precio">
+      <div class="fila"><span>Solo equipos</span><strong>${clp(p.precio)}</strong></div>
+      <small>(IVA incluido)</small>
+      <p>Instalación, flete y tramitación SEC se cotizan aparte según proyecto y comuna.</p>
+    </div>
+    <div class="acciones">
+      <a class="btn btn-verde" href="producto.html?sku=${p.sku}">Ver kit</a>
+      <a class="btn btn-sol" href="cotizacion.html?sku=${p.sku}">Cotizar</a>
+    </div>
+    <a class="btn btn-wsp btn-block" target="_blank" rel="noopener" href="${wsp}">✆ Consultar WhatsApp</a>`;
+}

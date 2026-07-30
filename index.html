@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>essolar.cl | Kits solares con respaldo de ingeniería en Chile</title>
   <meta name="description" content="Kits solares On-Grid y Off-Grid con equipos GoodWe, asesoría de ingeniero eléctrico y tramitación SEC (TE-1/TE-4). Cotiza tu kit solar en Chile.">
-  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
 
@@ -256,7 +256,7 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=2"></script>
+<script src="js/data.js?v=3"></script>
 <script>
   // Kits destacados: uno de cada segmento representativo
   const destacados = ["ES-OG-4K-B5", "ES-OG-6K-B8", "ES-OG-8K-B8", "ES-ON-5K"];
@@ -266,20 +266,7 @@
     if (!p) return;
     const el = document.createElement("div");
     el.className = "kit";
-    el.innerHTML = `
-      <div class="kit-img">${svgCasaKit(p)}</div>
-      <div class="badges">
-        <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
-        <span class="badge marca">GoodWe</span>
-      </div>
-      <h3>${p.nombre}</h3>
-      <p class="specs">${p.resumen}</p>
-      <p class="precio">${clp(p.precio)}<small>Solo equipos · IVA incluido</small></p>
-      <p class="nota-aparte">Instalación, flete y tramitación SEC se cotizan aparte.</p>
-      <div class="acciones">
-        <a class="btn btn-verde" href="producto.html?sku=${p.sku}">Ver kit</a>
-        <a class="btn btn-sol" href="cotizacion.html?sku=${p.sku}">Cotizar</a>
-      </div>`;
+    el.innerHTML = plantillaKit(p);
     cont.appendChild(el);
   });
 </script>

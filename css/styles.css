@@ -123,6 +123,22 @@ img { max-width: 100%; }
 .kit:hover { box-shadow: var(--sombra); transform: translateY(-2px); }
 .kit-img { border-radius: 8px; overflow: hidden; line-height: 0; border: 1px solid var(--gris-300); }
 .kit-img svg { width: 100%; height: auto; display: block; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chips span {
+  border: 1px solid var(--gris-300); border-radius: 7px; padding: 5px 9px;
+  font-size: 0.78rem; color: var(--gris-900);
+}
+.chips span strong { color: var(--azul-500); font-weight: 700; }
+.bloque-precio {
+  background: var(--gris-100); border: 1px solid var(--gris-300); border-radius: 9px;
+  padding: 12px 14px;
+}
+.bloque-precio .fila { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.bloque-precio .fila span { font-size: 0.85rem; font-weight: 700; color: var(--azul-900); }
+.bloque-precio .fila strong { font-size: 1.35rem; font-weight: 800; color: var(--azul-900); }
+.bloque-precio small { color: var(--gris-600); font-size: 0.72rem; display: block; text-align: right; }
+.bloque-precio p { font-size: 0.75rem; color: var(--gris-600); margin-top: 8px; border-top: 1px dashed var(--gris-300); padding-top: 8px; }
+.btn-block { display: block; text-align: center; padding: 10px 8px; font-size: 0.9rem; }
 .kit .badges { display: flex; gap: 8px; flex-wrap: wrap; }
 .badge {
   font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px;
