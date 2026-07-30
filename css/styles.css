@@ -98,6 +98,8 @@ img { max-width: 100%; }
   transition: box-shadow .15s, transform .15s;
 }
 .kit:hover { box-shadow: var(--sombra); transform: translateY(-2px); }
+.kit-img { border-radius: 8px; overflow: hidden; line-height: 0; border: 1px solid var(--gris-300); }
+.kit-img svg { width: 100%; height: auto; display: block; }
 .kit .badges { display: flex; gap: 8px; flex-wrap: wrap; }
 .badge {
   font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px;

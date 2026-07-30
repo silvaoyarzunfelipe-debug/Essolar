@@ -186,3 +186,59 @@ const ESSOLAR_CONFIG = {
 function clp(n) {
   return "$" + n.toLocaleString("es-CL");
 }
+
+// Ilustración SVG parametrizada: casa con paneles según el kit.
+// Off-Grid muestra batería; On-Grid muestra poste de red.
+function svgCasaKit(p) {
+  const nPan = Math.min(p.paneles, 8);
+  const porFila = Math.min(nPan, 4);
+  const filas = nPan > 4 ? 2 : 1;
+  const panW = 30, panH = 26, gap = 5;
+  let paneles = "";
+  for (let f = 0; f < filas; f++) {
+    const enFila = f === 0 ? porFila : nPan - porFila;
+    for (let i = 0; i < enFila; i++) {
+      const x = 200 - (enFila * (panW + gap)) / 2 + i * (panW + gap);
+      const y = 66 + f * (panH + 5);
+      paneles += `<g transform="translate(${x},${y}) skewX(-14)">
+        <rect width="${panW}" height="${panH}" rx="2" fill="#14406b" stroke="#0b2540" stroke-width="1.5"/>
+        <line x1="${panW/2}" y1="0" x2="${panW/2}" y2="${panH}" stroke="#3b6ea5" stroke-width="1"/>
+        <line x1="0" y1="${panH/2}" x2="${panW}" y2="${panH/2}" stroke="#3b6ea5" stroke-width="1"/>
+      </g>`;
+    }
+  }
+  const extra = p.sistema === "Off-Grid"
+    ? `<rect x="318" y="150" width="34" height="46" rx="4" fill="#1a7f5a" stroke="#14684a" stroke-width="2"/>
+       <rect x="324" y="144" width="22" height="8" rx="2" fill="#14684a"/>
+       <path d="M338 158 L328 174 L335 174 L331 190 L343 171 L336 171 L340 158 Z" fill="#f5a623"/>`
+    : `<line x1="345" y1="196" x2="345" y2="88" stroke="#8a7a66" stroke-width="6"/>
+       <line x1="325" y1="100" x2="365" y2="100" stroke="#8a7a66" stroke-width="4"/>
+       <path d="M328 102 Q300 118 268 96" stroke="#55637a" stroke-width="2" fill="none"/>
+       <path d="M362 102 Q380 130 372 196" stroke="#55637a" stroke-width="2" fill="none"/>`;
+  return `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${p.nombre}: casa con ${p.paneles} paneles solares">
+    <defs>
+      <linearGradient id="cielo-${p.sku}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#bfe0f5"/><stop offset="1" stop-color="#e8f4fc"/>
+      </linearGradient>
+      <clipPath id="techo-${p.sku}"><polygon points="108,118 168,58 232,58 292,118"/></clipPath>
+    </defs>
+    <rect width="400" height="220" fill="url(#cielo-${p.sku})"/>
+    <circle cx="52" cy="46" r="22" fill="#f5a623"/>
+    <g stroke="#f5a623" stroke-width="3" stroke-linecap="round">
+      <line x1="52" y1="12" x2="52" y2="4"/><line x1="52" y1="80" x2="52" y2="88"/>
+      <line x1="18" y1="46" x2="10" y2="46"/><line x1="86" y1="46" x2="94" y2="46"/>
+      <line x1="28" y1="22" x2="22" y2="16"/><line x1="76" y1="70" x2="82" y2="76"/>
+      <line x1="76" y1="22" x2="82" y2="16"/><line x1="28" y1="70" x2="22" y2="76"/>
+    </g>
+    <rect x="0" y="196" width="400" height="24" fill="#8fc9a8"/>
+    <rect x="118" y="118" width="164" height="78" fill="#f7f1e3" stroke="#d9cdb4" stroke-width="2"/>
+    <polygon points="108,118 168,58 232,58 292,118" fill="#c9b896"/>
+    <g clip-path="url(#techo-${p.sku})">${paneles}</g>
+    <rect x="138" y="150" width="26" height="46" rx="2" fill="#14406b"/>
+    <circle cx="159" cy="174" r="2" fill="#f5a623"/>
+    <rect x="196" y="146" width="34" height="26" rx="2" fill="#bfe0f5" stroke="#14406b" stroke-width="2.5"/>
+    <line x1="213" y1="146" x2="213" y2="172" stroke="#14406b" stroke-width="2"/>
+    <rect x="248" y="146" width="24" height="26" rx="2" fill="#bfe0f5" stroke="#14406b" stroke-width="2.5"/>
+    ${extra}
+  </svg>`;
+}
