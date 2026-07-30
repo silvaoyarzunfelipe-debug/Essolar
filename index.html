@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>essolar.cl | Kits solares con respaldo de ingeniería en Chile</title>
   <meta name="description" content="Kits solares On-Grid y Off-Grid con equipos GoodWe, asesoría de ingeniero eléctrico y tramitación SEC (TE-1/TE-4). Cotiza tu kit solar en Chile.">
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <link rel="stylesheet" href="css/styles.css?v=5">
 </head>
 <body>
 
@@ -25,12 +25,69 @@
 </header>
 
 <section class="hero">
-  <div class="contenedor">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cieloHero" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0b2540"/>
+          <stop offset="0.45" stop-color="#1d4569"/>
+          <stop offset="0.72" stop-color="#b85c2a"/>
+          <stop offset="0.85" stop-color="#f5a623"/>
+        </linearGradient>
+        <radialGradient id="brilloSol" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#ffd27a" stop-opacity="0.9"/>
+          <stop offset="0.5" stop-color="#f5a623" stop-opacity="0.35"/>
+          <stop offset="1" stop-color="#f5a623" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="panelCara" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#123a5c"/>
+          <stop offset="0.6" stop-color="#0e2a45"/>
+          <stop offset="1" stop-color="#0a1f33"/>
+        </linearGradient>
+        <linearGradient id="panelReflejo" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#f5a623" stop-opacity="0"/>
+          <stop offset="1" stop-color="#ffd27a" stop-opacity="0.35"/>
+        </linearGradient>
+      </defs>
+      <rect width="1600" height="600" fill="url(#cieloHero)"/>
+      <circle cx="1220" cy="420" r="230" fill="url(#brilloSol)"/>
+      <circle cx="1220" cy="420" r="64" fill="#ffe3a3"/>
+      <ellipse cx="420" cy="140" rx="180" ry="26" fill="#ffffff" opacity="0.07"/>
+      <ellipse cx="980" cy="90" rx="240" ry="30" fill="#ffffff" opacity="0.06"/>
+      <ellipse cx="1420" cy="200" rx="150" ry="20" fill="#f5a623" opacity="0.12"/>
+      <rect y="470" width="1600" height="130" fill="#0a1a2b"/>
+      <!-- fila de paneles trasera -->
+      <g>
+        <polygon points="60,470 260,380 640,380 480,470" fill="url(#panelCara)" stroke="#2e5f8a" stroke-width="2"/>
+        <polygon points="560,470 760,380 1140,380 980,470" fill="url(#panelCara)" stroke="#2e5f8a" stroke-width="2"/>
+        <polygon points="1060,470 1260,380 1640,380 1480,470" fill="url(#panelCara)" stroke="#2e5f8a" stroke-width="2"/>
+        <polygon points="1060,470 1260,380 1640,380 1480,470" fill="url(#panelReflejo)"/>
+      </g>
+      <!-- fila de paneles delantera -->
+      <g>
+        <polygon points="-80,600 220,440 700,440 500,600" fill="url(#panelCara)" stroke="#35688f" stroke-width="3"/>
+        <polygon points="520,600 820,440 1300,440 1100,600" fill="url(#panelCara)" stroke="#35688f" stroke-width="3"/>
+        <polygon points="1120,600 1420,440 1900,440 1700,600" fill="url(#panelCara)" stroke="#35688f" stroke-width="3"/>
+        <polygon points="1120,600 1420,440 1900,440 1700,600" fill="url(#panelReflejo)"/>
+        <g stroke="#2e5f8a" stroke-width="1.5" opacity="0.8">
+          <line x1="20" y1="546" x2="600" y2="546"/><line x1="120" y1="492" x2="650" y2="492"/>
+          <line x1="620" y1="546" x2="1200" y2="546"/><line x1="720" y1="492" x2="1250" y2="492"/>
+          <line x1="1220" y1="546" x2="1800" y2="546"/><line x1="1320" y1="492" x2="1850" y2="492"/>
+          <line x1="140" y1="440" x2="-40" y2="600"/><line x1="300" y1="440" x2="120" y2="600"/><line x1="460" y1="440" x2="280" y2="600"/>
+          <line x1="740" y1="440" x2="560" y2="600"/><line x1="900" y1="440" x2="720" y2="600"/><line x1="1060" y1="440" x2="880" y2="600"/>
+          <line x1="1340" y1="440" x2="1160" y2="600"/><line x1="1500" y1="440" x2="1320" y2="600"/><line x1="1660" y1="440" x2="1480" y2="600"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="contenedor hero-contenido">
+    <span class="hero-kicker">⚡ Kits solares para cada tipo de proyecto</span>
     <h1>Energía solar con respaldo de ingeniería</h1>
-    <p>Kits solares On-Grid y Off-Grid con equipos GoodWe, dimensionados con criterio de ingeniería eléctrica y tramitación SEC incluida como servicio. Sin promesas infladas: números claros y sistemas que funcionan.</p>
+    <p>Kits On-Grid y Off-Grid con equipos GoodWe, dimensionados con criterio de ingeniería eléctrica y tramitación SEC incluida como servicio. Números claros y sistemas que funcionan.</p>
     <div class="hero-acciones">
       <a href="tienda.html" class="btn btn-sol">Ver kits solares</a>
       <a href="cotizacion.html" class="btn btn-borde">Cotizar mi proyecto</a>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar%20un%20kit%20solar" target="_blank" rel="noopener" class="btn btn-wsp">✆ Cotiza por WhatsApp</a>
     </div>
   </div>
 </section>
