@@ -187,128 +187,97 @@ function clp(n) {
   return "$" + n.toLocaleString("es-CL");
 }
 
-// Ilustración SVG parametrizada: casa con paneles según el kit.
-// Off-Grid muestra batería; On-Grid muestra poste de red.
-function svgCasaKit(p) {
-  const nPan = Math.min(p.paneles, 8);
-  const porFila = Math.min(nPan, 4);
-  const filas = nPan > 4 ? 2 : 1;
-  const panW = 30, panH = 26, gap = 5;
-  let paneles = "";
-  for (let f = 0; f < filas; f++) {
-    const enFila = f === 0 ? porFila : nPan - porFila;
-    for (let i = 0; i < enFila; i++) {
-      const x = 200 - (enFila * (panW + gap)) / 2 + i * (panW + gap);
-      const y = 66 + f * (panH + 5);
-      paneles += `<g transform="translate(${x},${y}) skewX(-14)">
-        <rect width="${panW}" height="${panH}" rx="2" fill="#14406b" stroke="#0b2540" stroke-width="1.5"/>
-        <line x1="${panW/2}" y1="0" x2="${panW/2}" y2="${panH}" stroke="#3b6ea5" stroke-width="1"/>
-        <line x1="0" y1="${panH/2}" x2="${panW}" y2="${panH/2}" stroke="#3b6ea5" stroke-width="1"/>
-      </g>`;
-    }
-  }
-  const extra = p.sistema === "Off-Grid"
-    ? `<rect x="318" y="150" width="34" height="46" rx="4" fill="#1a7f5a" stroke="#14684a" stroke-width="2"/>
-       <rect x="324" y="144" width="22" height="8" rx="2" fill="#14684a"/>
-       <path d="M338 158 L328 174 L335 174 L331 190 L343 171 L336 171 L340 158 Z" fill="#f5a623"/>`
-    : `<line x1="345" y1="196" x2="345" y2="88" stroke="#8a7a66" stroke-width="6"/>
-       <line x1="325" y1="100" x2="365" y2="100" stroke="#8a7a66" stroke-width="4"/>
-       <path d="M328 102 Q300 118 268 96" stroke="#55637a" stroke-width="2" fill="none"/>
-       <path d="M362 102 Q380 130 372 196" stroke="#55637a" stroke-width="2" fill="none"/>`;
-  return `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${p.nombre}: casa con ${p.paneles} paneles solares">
-    <defs>
-      <linearGradient id="cielo-${p.sku}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#bfe0f5"/><stop offset="1" stop-color="#e8f4fc"/>
-      </linearGradient>
-      <clipPath id="techo-${p.sku}"><polygon points="108,118 168,58 232,58 292,118"/></clipPath>
-    </defs>
-    <rect width="400" height="220" fill="url(#cielo-${p.sku})"/>
-    <circle cx="52" cy="46" r="22" fill="#f5a623"/>
-    <g stroke="#f5a623" stroke-width="3" stroke-linecap="round">
-      <line x1="52" y1="12" x2="52" y2="4"/><line x1="52" y1="80" x2="52" y2="88"/>
-      <line x1="18" y1="46" x2="10" y2="46"/><line x1="86" y1="46" x2="94" y2="46"/>
-      <line x1="28" y1="22" x2="22" y2="16"/><line x1="76" y1="70" x2="82" y2="76"/>
-      <line x1="76" y1="22" x2="82" y2="16"/><line x1="28" y1="70" x2="22" y2="76"/>
-    </g>
-    <rect x="0" y="196" width="400" height="24" fill="#8fc9a8"/>
-    <rect x="118" y="118" width="164" height="78" fill="#f7f1e3" stroke="#d9cdb4" stroke-width="2"/>
-    <polygon points="108,118 168,58 232,58 292,118" fill="#c9b896"/>
-    <g clip-path="url(#techo-${p.sku})">${paneles}</g>
-    <rect x="138" y="150" width="26" height="46" rx="2" fill="#14406b"/>
-    <circle cx="159" cy="174" r="2" fill="#f5a623"/>
-    <rect x="196" y="146" width="34" height="26" rx="2" fill="#bfe0f5" stroke="#14406b" stroke-width="2.5"/>
-    <line x1="213" y1="146" x2="213" y2="172" stroke="#14406b" stroke-width="2"/>
-    <rect x="248" y="146" width="24" height="26" rx="2" fill="#bfe0f5" stroke="#14406b" stroke-width="2.5"/>
-    ${extra}
-  </svg>`;
-}
-
-// Banner tipo flyer del kit: componentes (panel / inversor / batería) sobre fondo oscuro.
+// Imagen de kit estilo fotografía: casa con techo de paneles al atardecer,
+// cinta con kWp y batería si el kit la incluye.
 function svgKitBanner(p) {
-  const watts = (p.inversorKw * 1000).toLocaleString("es-CL");
+  const kwpTxt = String(p.kwp.toFixed(2)).replace(/0$/, "").replace(".", ",");
   const conBat = p.batKwh > 0;
   const batTxt = String(p.batKwh).replace(".", ",");
-  // posiciones: 3 columnas con batería, 2 sin batería
-  const cx = conBat ? [90, 200, 310] : [130, 270];
-  const items = [];
-  // Panel solar
-  items.push(`<g transform="translate(${cx[0] - 42},96)">
-    <rect width="84" height="104" rx="4" fill="#122c47" stroke="#3b6ea5" stroke-width="2.5"/>
-    <g stroke="#2e5f8a" stroke-width="1.4">
-      <line x1="28" y1="0" x2="28" y2="104"/><line x1="56" y1="0" x2="56" y2="104"/>
-      <line x1="0" y1="26" x2="84" y2="26"/><line x1="0" y1="52" x2="84" y2="52"/><line x1="0" y1="78" x2="84" y2="78"/>
-    </g>
-    <rect width="84" height="104" rx="4" fill="none" stroke="#5e8fc0" stroke-width="1" opacity="0.6"/>
-  </g>
-  <text x="${cx[0]}" y="218" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" font-family="Arial, sans-serif">${p.paneles} PANELES ${p.panelW} W</text>`);
-  // Inversor
-  items.push(`<g transform="translate(${cx[1] - 38},104)">
-    <rect width="76" height="92" rx="8" fill="#f4f6f8" stroke="#c9d3de" stroke-width="2"/>
-    <rect x="14" y="14" width="48" height="26" rx="3" fill="#0b1f33"/>
-    <text x="38" y="31" text-anchor="middle" fill="#f5a623" font-size="11" font-weight="700" font-family="Arial, sans-serif">${p.inversorKw} kW</text>
-    <circle cx="24" cy="58" r="5" fill="#f5a623"/>
-    <circle cx="40" cy="58" r="5" fill="#1fae5a"/>
-    <rect x="14" y="72" width="48" height="6" rx="3" fill="#c9d3de"/>
-  </g>
-  <text x="${cx[1]}" y="218" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" font-family="Arial, sans-serif">INVERSOR ${p.inversorKw} kW MPPT</text>`);
-  // Batería
-  if (conBat) {
-    items.push(`<g transform="translate(${cx[2] - 32},100)">
-      <rect width="64" height="96" rx="8" fill="#f4f6f8" stroke="#c9d3de" stroke-width="2"/>
-      <rect x="0" y="30" width="64" height="12" fill="#f5a623"/>
-      <text x="32" y="66" text-anchor="middle" fill="#0b1f33" font-size="12" font-weight="800" font-family="Arial, sans-serif">${batTxt}</text>
-      <text x="32" y="80" text-anchor="middle" fill="#55637a" font-size="8" font-weight="700" font-family="Arial, sans-serif">kWh LiFePO4</text>
-      <rect x="18" y="8" width="28" height="8" rx="4" fill="#c9d3de"/>
-    </g>
-    <text x="${cx[2]}" y="218" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" font-family="Arial, sans-serif">BATERÍA LITIO ${batTxt} kWh</text>`);
+  // Techo: grilla 6x3 en plano inclinado (skewX). Celdas con panel según cantidad real (máx 18).
+  const nPan = Math.min(p.paneles, 18);
+  const cols = 6, filas = 3;
+  const cw = 36, ch = 39, gx = 2, gy = 2, X0 = 205, Y0 = 42;
+  let celdas = "";
+  for (let f = 0; f < filas; f++) {
+    for (let c = 0; c < cols; c++) {
+      const idx = f * cols + c;
+      const x = X0 + c * (cw + gx), y = Y0 + f * (ch + gy);
+      if (idx < nPan) {
+        celdas += `<rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="2" fill="url(#celdaPanel-${p.sku})" stroke="#9fc4e8" stroke-width="1"/>
+        <line x1="${x + cw / 2}" y1="${y}" x2="${x + cw / 2}" y2="${y + ch}" stroke="#7aa8d4" stroke-width="0.7" opacity="0.7"/>`;
+      } else {
+        celdas += `<rect x="${x}" y="${y}" width="${cw}" height="${ch}" fill="#5d6672" opacity="0.35"/>`;
+      }
+    }
   }
-  const badge = p.sistema === "Off-Grid" ? "OFF-GRID HÍBRIDO" : "ON-GRID · NETBILLING";
-  return `<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${p.nombre}: componentes del kit">
+  const bateria = conBat ? `
+    <g transform="translate(342,96)">
+      <rect x="8" y="-7" width="24" height="9" rx="3" fill="#1d7a43"/>
+      <rect width="40" height="58" rx="8" fill="url(#gBat-${p.sku})" stroke="#1d7a43" stroke-width="2"/>
+      <path d="M23 10 L13 32 L20 32 L17 48 L29 26 L22 26 L26 10 Z" fill="#ffffff"/>
+      <rect x="-4" y="62" width="48" height="16" rx="8" fill="rgba(8,24,38,0.75)"/>
+      <text x="20" y="73" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700" font-family="Arial, sans-serif">${batTxt} kWh</text>
+    </g>` : "";
+  return `<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${p.nombre}: ${kwpTxt} kWp">
     <defs>
-      <linearGradient id="fondoKit-${p.sku}" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#0e2438"/><stop offset="1" stop-color="#081826"/>
+      <linearGradient id="cieloKit-${p.sku}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#9db8d2"/><stop offset="0.55" stop-color="#f3c98b"/><stop offset="1" stop-color="#f0a55c"/>
       </linearGradient>
+      <linearGradient id="celdaPanel-${p.sku}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2b4f7e"/><stop offset="0.5" stop-color="#16304f"/><stop offset="1" stop-color="#0e2036"/>
+      </linearGradient>
+      <linearGradient id="gCinta-${p.sku}" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#f4511e"/><stop offset="1" stop-color="#f5a623"/>
+      </linearGradient>
+      <linearGradient id="gBat-${p.sku}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#4cc46f"/><stop offset="1" stop-color="#2a9d52"/>
+      </linearGradient>
+      <linearGradient id="gMadera-${p.sku}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c98d5a"/><stop offset="1" stop-color="#a96f42"/>
+      </linearGradient>
+      <clipPath id="clipTecho-${p.sku}"><polygon points="66,160 172,40 366,40 260,160"/></clipPath>
     </defs>
-    <rect width="400" height="260" fill="url(#fondoKit-${p.sku})"/>
-    <g stroke="#16324d" stroke-width="1"><line x1="0" y1="240" x2="400" y2="150"/><line x1="0" y1="260" x2="400" y2="190"/></g>
-    <circle cx="368" cy="96" r="46" fill="#f5a623" opacity="0.10"/>
-    <g transform="translate(16,14)">
-      <circle cx="11" cy="11" r="7" fill="#f5a623"/>
-      <g stroke="#f5a623" stroke-width="2" stroke-linecap="round">
-        <line x1="11" y1="0" x2="11" y2="2"/><line x1="11" y1="20" x2="11" y2="22"/>
-        <line x1="0" y1="11" x2="2" y2="11"/><line x1="20" y1="11" x2="22" y2="11"/>
-      </g>
-      <text x="28" y="16" fill="#ffffff" font-size="14" font-weight="800" letter-spacing="2" font-family="Arial, sans-serif">ESOLAR</text>
+    <rect width="400" height="260" fill="url(#cieloKit-${p.sku})"/>
+    <circle cx="118" cy="70" r="56" fill="#ffe9bd" opacity="0.85"/>
+    <circle cx="118" cy="70" r="26" fill="#fff6e0"/>
+    <ellipse cx="320" cy="26" rx="90" ry="12" fill="#ffffff" opacity="0.25"/>
+    <ellipse cx="60" cy="34" rx="70" ry="10" fill="#ffffff" opacity="0.2"/>
+    <!-- chimenea -->
+    <rect x="316" y="14" width="22" height="40" fill="#8a5a3b"/>
+    <rect x="312" y="10" width="30" height="8" fill="#6f452c"/>
+    <!-- techo con paneles -->
+    <polygon points="66,160 172,40 366,40 260,160" fill="#454c57"/>
+    <g clip-path="url(#clipTecho-${p.sku})"><g transform="skewX(-41.5)">${celdas}</g></g>
+    <polygon points="66,160 172,40 366,40 260,160" fill="none" stroke="#333a44" stroke-width="3"/>
+    <!-- alero y fachada -->
+    <rect x="58" y="158" width="212" height="10" fill="#333a44"/>
+    <rect x="70" y="168" width="190" height="74" fill="url(#gMadera-${p.sku})"/>
+    <g stroke="#8f5c33" stroke-width="1" opacity="0.5">
+      <line x1="70" y1="182" x2="260" y2="182"/><line x1="70" y1="196" x2="260" y2="196"/>
+      <line x1="70" y1="210" x2="260" y2="210"/><line x1="70" y1="224" x2="260" y2="224"/>
     </g>
-    <g>
-      <rect x="252" y="14" width="134" height="22" rx="11" fill="none" stroke="#f5a623" stroke-width="1.5"/>
-      <text x="319" y="29" text-anchor="middle" fill="#f5a623" font-size="10" font-weight="800" font-family="Arial, sans-serif">${badge}</text>
+    <rect x="84" y="180" width="42" height="52" rx="2" fill="#ffca7a" stroke="#5c3d22" stroke-width="3"/>
+    <line x1="105" y1="180" x2="105" y2="232" stroke="#5c3d22" stroke-width="2"/>
+    <rect x="140" y="180" width="42" height="52" rx="2" fill="#ffca7a" stroke="#5c3d22" stroke-width="3"/>
+    <line x1="161" y1="180" x2="161" y2="232" stroke="#5c3d22" stroke-width="2"/>
+    <rect x="200" y="184" width="34" height="58" rx="2" fill="#5c3d22"/>
+    <circle cx="228" cy="214" r="2.5" fill="#f5a623"/>
+    <!-- muro lateral derecho -->
+    <polygon points="260,160 366,40 366,242 260,242" fill="#b57847" opacity="0.9"/>
+    <polygon points="260,160 366,40 366,242 260,242" fill="#00000022"/>
+    <rect x="300" y="180" width="34" height="40" rx="2" fill="#ffca7a" stroke="#5c3d22" stroke-width="3"/>
+    <!-- suelo y vegetación -->
+    <rect y="240" width="400" height="20" fill="#6d4a33"/>
+    <ellipse cx="52" cy="238" rx="34" ry="22" fill="#c75b2e"/>
+    <ellipse cx="30" cy="244" rx="22" ry="14" fill="#a34423"/>
+    <ellipse cx="286" cy="244" rx="26" ry="12" fill="#4a6b3a"/>
+    <ellipse cx="380" cy="246" rx="30" ry="12" fill="#3f5c32"/>
+    <!-- cinta kWp -->
+    <g transform="rotate(7 400 0)">
+      <rect x="222" y="-22" width="230" height="56" fill="url(#gCinta-${p.sku})"/>
+      <text x="330" y="24" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="800" font-family="Arial, sans-serif">${kwpTxt} kWp</text>
     </g>
-    <text x="200" y="76" text-anchor="middle" font-family="Arial, sans-serif">
-      <tspan fill="#ffffff" font-size="27" font-weight="800">KIT SOLAR </tspan><tspan fill="#f5a623" font-size="27" font-weight="800">${watts} W</tspan>
-    </text>
-    ${items.join("")}
-    <text x="200" y="246" text-anchor="middle" fill="#8fb3d4" font-size="9" font-weight="700" letter-spacing="1" font-family="Arial, sans-serif">EQUIPOS GOODWE · INCLUYE SET DE MONTAJE, CABLES Y PROTECCIONES</text>
+    ${bateria}
   </svg>`;
 }
 
@@ -319,7 +288,7 @@ function plantillaKit(p) {
     : `<span><strong>Batería:</strong> ampliable</span>`;
   const wsp = `https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?")}`;
   return `
-    <div class="kit-img">${svgKitBanner(p)}</div>
+    <div class="kit-img">${svgKitBanner(p)}<img class="kit-foto" src="img/kits/${p.sku}.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
     <div class="badges">
       <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
       <span class="badge marca">GoodWe</span>
