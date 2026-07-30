@@ -40,9 +40,11 @@ img { max-width: 100%; }
   display: flex; align-items: center; justify-content: space-between;
   gap: 24px; padding: 14px 0; flex-wrap: wrap;
 }
-.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.45rem; color: var(--azul-900); }
-.logo .sol { color: var(--sol-500); font-size: 1.6rem; }
-.logo span.es { color: var(--verde-600); }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-img { height: 52px; width: auto; display: block; }
+.logo-texto { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-nombre { font-weight: 900; font-size: 1.5rem; letter-spacing: 0.16em; color: #111; }
+.logo-sub { font-size: 0.92rem; font-weight: 600; color: #111; letter-spacing: 0.03em; }
 .nav { display: flex; gap: 22px; flex-wrap: wrap; }
 .nav a { color: var(--azul-900); font-weight: 600; font-size: 0.95rem; }
 .nav a:hover, .nav a.activo { color: var(--sol-600); }
