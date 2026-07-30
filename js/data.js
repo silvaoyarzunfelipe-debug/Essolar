@@ -288,7 +288,7 @@ function plantillaKit(p) {
     : `<span><strong>Batería:</strong> ampliable</span>`;
   const wsp = `https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?")}`;
   return `
-    <div class="kit-img">${svgKitBanner(p)}<img class="kit-foto" src="img/kits/${p.sku}.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+    <div class="kit-img">${svgKitBanner(p)}<img class="kit-foto" src="img/kits/${p.sku}.jpg" alt="" loading="lazy" onerror="this.parentElement.querySelector('.kit-chips-img').remove(); this.remove()"><div class="kit-chips-img"><span class="chip-kwp">${String(p.kwp.toFixed(2)).replace(/0$/, "").replace(".", ",")} kWp</span>${p.batKwh > 0 ? `<span class=\"chip-bat\">🔋 ${String(p.batKwh).replace(".", ",")} kWh</span>` : ""}</div></div>
     <div class="badges">
       <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
       <span class="badge marca">GoodWe</span>
