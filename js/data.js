@@ -1,4 +1,4 @@
-// Catálogo essolar.cl — precios CLP IVA incluido, solo equipos.
+// Catálogo ESSOLAR — precios CLP IVA incluido, solo equipos.
 // NOTA: capacidades de batería pendientes de ajustar a módulos GoodWe Lynx reales del distribuidor.
 const ESSOLAR_PRODUCTS = [
   {
@@ -175,9 +175,9 @@ const ESSOLAR_PRODUCTS = [
 ];
 
 const ESSOLAR_CONFIG = {
-  // TODO: reemplazar por el número de WhatsApp comercial de essolar.cl
+  // TODO: reemplazar por el número de WhatsApp comercial de ESSOLAR
   whatsapp: "56900000000",
-  email: "contacto@essolar.cl",
+  email: "silvaoyarzunfelipe@gmail.com",
   garantiaInversor: "Inversor GoodWe: 5 años, ampliable a 10 con registro",
   garantiaBateria: "Batería GoodWe Lynx: 10 años",
   garantiaPaneles: "Paneles: garantía según fabricante"
@@ -185,6 +185,23 @@ const ESSOLAR_CONFIG = {
 
 function clp(n) {
   return "$" + n.toLocaleString("es-CL");
+}
+
+// Mientras el WhatsApp siga siendo el placeholder, los botones de contacto
+// abren el correo en vez de un número que no existe.
+function hayWhatsapp() {
+  return ESSOLAR_CONFIG.whatsapp && ESSOLAR_CONFIG.whatsapp !== "56900000000";
+}
+
+function enlaceContacto(mensaje, asunto) {
+  if (hayWhatsapp()) {
+    return `https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+  }
+  return `mailto:${ESSOLAR_CONFIG.email}?subject=${encodeURIComponent(asunto || "Consulta kit solar")}&body=${encodeURIComponent(mensaje)}`;
+}
+
+function textoContacto() {
+  return hayWhatsapp() ? "✆ Consultar WhatsApp" : "✉ Consultar por correo";
 }
 
 // Imagen de kit estilo fotografía: casa con techo de paneles al atardecer,
@@ -286,7 +303,7 @@ function plantillaKit(p) {
   const batChip = p.batKwh > 0
     ? `<span><strong>Batería:</strong> ${String(p.batKwh).replace(".", ",")} kWh</span>`
     : `<span><strong>Batería:</strong> ampliable</span>`;
-  const wsp = `https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?")}`;
+  const wsp = enlaceContacto("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?", "Consulta " + p.sku);
   return `
     <div class="kit-img">${svgKitBanner(p)}<img class="kit-foto" src="img/kits/${p.sku}.jpg" alt="" loading="lazy" onerror="this.parentElement.querySelector('.kit-chips-img').remove(); this.remove()"><div class="kit-chips-img"><span class="chip-kwp">${String(p.kwp.toFixed(2)).replace(/0$/, "").replace(".", ",")} kWp</span>${p.batKwh > 0 ? `<span class=\"chip-bat\">🔋 ${String(p.batKwh).replace(".", ",")} kWh</span>` : ""}</div></div>
     <div class="badges">
@@ -308,5 +325,5 @@ function plantillaKit(p) {
       <a class="btn btn-verde" href="producto.html?sku=${p.sku}">Ver kit</a>
       <a class="btn btn-sol" href="cotizacion.html?sku=${p.sku}">Cotizar</a>
     </div>
-    <a class="btn btn-wsp btn-block" target="_blank" rel="noopener" href="${wsp}">✆ Consultar WhatsApp</a>`;
+    <a class="btn btn-wsp btn-block" href="${wsp}">${textoContacto()}</a>`;
 }

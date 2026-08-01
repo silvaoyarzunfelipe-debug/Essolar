@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kit solar | essolar.cl</title>
-  <link rel="stylesheet" href="css/styles.css?v=8">
+  <title>Kit solar | ESSOLAR</title>
+  <link rel="stylesheet" href="css/styles.css?v=9">
 </head>
 <body>
 
 <header class="header">
   <div class="contenedor header-inner">
-    <a href="index.html" class="logo"><img src="img/logo-icon.svg" alt="" class="logo-img"><span class="logo-texto"><span class="logo-nombre">ESSOLAR</span><span class="logo-sub">eccohouse.cl</span></span></a>
+    <a href="index.html" class="logo"><img src="img/logo-icon.svg" alt="" class="logo-img"><span class="logo-texto"><span class="logo-nombre">ESSOLAR</span><span class="logo-sub">Kits solares · Chile</span></span></a>
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="tienda.html" class="activo">Tienda</a>
@@ -33,7 +33,7 @@
   <div class="contenedor">
     <div class="footer-grid">
       <div>
-        <h4>essolar.cl</h4>
+        <h4>ESSOLAR</h4>
         <p style="font-size:0.9rem;">Kits solares con respaldo de ingeniería eléctrica. Equipos GoodWe, dimensionamiento serio y tramitación SEC como servicio.</p>
       </div>
       <div>
@@ -51,21 +51,21 @@
       <div>
         <h4>Contacto</h4>
         <a href="cotizacion.html">Solicitar cotización</a>
-        <a href="mailto:contacto@essolar.cl">contacto@essolar.cl</a>
+        <a href="mailto:silvaoyarzunfelipe@gmail.com">silvaoyarzunfelipe@gmail.com</a>
       </div>
     </div>
     <div class="legal">
       <p>Precios de kits solo equipos, IVA incluido. Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna. Las estimaciones de generación y ahorro son referenciales; la configuración final se valida en visita técnica.</p>
-      <p style="margin-top:8px;">© 2026 essolar.cl — Todos los derechos reservados.</p>
+      <p style="margin-top:8px;">© 2026 ESSOLAR — Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
 
-<script src="js/data.js?v=7"></script>
+<script src="js/data.js?v=8"></script>
 <script>
   const sku = new URLSearchParams(location.search).get("sku");
   const p = ESSOLAR_PRODUCTS.find(x => x.sku === sku) || ESSOLAR_PRODUCTS[0];
-  document.title = `${p.nombre} · ${p.resumen.split("·")[0].trim()} | essolar.cl`;
+  document.title = `${p.nombre} · ${p.resumen.split("·")[0].trim()} | ESSOLAR`;
 
   const filaBateria = p.batKwh > 0
     ? `<tr><td>Batería de litio GoodWe Lynx</td><td>${String(p.batKwh).replace(".", ",")} kWh</td></tr>`
@@ -95,7 +95,7 @@
         <div class="aviso-aparte">⚠ Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna.</div>
         <div class="ficha-acciones">
           <a class="btn btn-sol" id="btn-cotizar" href="cotizacion.html?sku=${p.sku}">Cotizar este kit</a>
-          <a class="btn btn-verde" href="https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?")}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          <a class="btn btn-verde" href="${enlaceContacto("Hola, me interesa el " + p.nombre + " (SKU " + p.sku + "). ¿Me pueden orientar?", "Consulta " + p.sku)}">${textoContacto()}</a>
         </div>
         <div class="serv-adicionales">
           <h3>Servicios adicionales disponibles</h3>
