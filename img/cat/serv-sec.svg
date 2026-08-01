@@ -1,0 +1,69 @@
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Declaración eléctrica TE-1 y TE-4 ante la SEC">
+  <defs>
+    <linearGradient id="fondoS" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaf1f8"/><stop offset="1" stop-color="#d6e0ea"/>
+    </linearGradient>
+    <linearGradient id="hojaS" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f0f4f8"/>
+    </linearGradient>
+    <filter id="shS" x="-25%" y="-25%" width="160%" height="160%">
+      <feDropShadow dx="5" dy="9" stdDeviation="8" flood-color="#0b2540" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="600" height="400" fill="url(#fondoS)"/>
+  <circle cx="70" cy="60" r="46" fill="#1a7f5a" opacity="0.07"/>
+  <circle cx="546" cy="342" r="60" fill="#14406b" opacity="0.06"/>
+
+  <!-- hoja trasera (TE-4) -->
+  <g filter="url(#shS)" transform="rotate(-7 300 210)">
+    <rect x="196" y="66" width="232" height="286" rx="8" fill="url(#hojaS)" stroke="#c3ccd6" stroke-width="2"/>
+    <rect x="220" y="96" width="120" height="12" rx="6" fill="#dbe3ec"/>
+    <rect x="220" y="120" width="184" height="7" rx="3.5" fill="#e6ebf1"/>
+    <rect x="220" y="136" width="184" height="7" rx="3.5" fill="#e6ebf1"/>
+    <rect x="220" y="152" width="140" height="7" rx="3.5" fill="#e6ebf1"/>
+  </g>
+
+  <!-- hoja principal (TE-1) -->
+  <g filter="url(#shS)">
+    <rect x="158" y="48" width="246" height="304" rx="10" fill="url(#hojaS)" stroke="#b9c4cf" stroke-width="2.5"/>
+    <!-- encabezado -->
+    <rect x="158" y="48" width="246" height="52" rx="10" fill="#14406b"/>
+    <rect x="158" y="88" width="246" height="12" fill="#14406b"/>
+    <text x="281" y="80" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="800" letter-spacing="1" font-family="Arial, sans-serif">DECLARACIÓN SEC</text>
+    <!-- campos -->
+    <g>
+      <rect x="182" y="122" width="70" height="20" rx="4" fill="#e8f0fe"/>
+      <text x="217" y="136" text-anchor="middle" fill="#1f6feb" font-size="12" font-weight="800" font-family="Arial, sans-serif">TE-1</text>
+      <rect x="262" y="122" width="70" height="20" rx="4" fill="#e6f4ee"/>
+      <text x="297" y="136" text-anchor="middle" fill="#1a7f5a" font-size="12" font-weight="800" font-family="Arial, sans-serif">TE-4</text>
+    </g>
+    <g fill="#e6ebf1">
+      <rect x="182" y="160" width="198" height="8" rx="4"/>
+      <rect x="182" y="178" width="198" height="8" rx="4"/>
+      <rect x="182" y="196" width="150" height="8" rx="4"/>
+      <rect x="182" y="222" width="198" height="8" rx="4"/>
+      <rect x="182" y="240" width="170" height="8" rx="4"/>
+    </g>
+    <!-- casillas marcadas -->
+    <g>
+      <rect x="182" y="266" width="16" height="16" rx="3" fill="#fff" stroke="#1a7f5a" stroke-width="2.5"/>
+      <path d="M185 274 l4 5 l8 -10" stroke="#1a7f5a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="206" y="268" width="130" height="8" rx="4" fill="#e6ebf1"/>
+      <rect x="182" y="292" width="16" height="16" rx="3" fill="#fff" stroke="#1a7f5a" stroke-width="2.5"/>
+      <path d="M185 300 l4 5 l8 -10" stroke="#1a7f5a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="206" y="294" width="110" height="8" rx="4" fill="#e6ebf1"/>
+    </g>
+    <!-- firma -->
+    <path d="M196 330 c 16 -14 26 10 40 -2 c 14 -12 22 8 38 -4" stroke="#14406b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <line x1="192" y1="340" x2="300" y2="340" stroke="#c3ccd6" stroke-width="2"/>
+  </g>
+
+  <!-- timbre aprobado -->
+  <g transform="rotate(-14 418 268)">
+    <circle cx="418" cy="268" r="62" fill="none" stroke="#1a7f5a" stroke-width="6" opacity="0.9"/>
+    <circle cx="418" cy="268" r="50" fill="none" stroke="#1a7f5a" stroke-width="2.5" opacity="0.9"/>
+    <text x="418" y="258" text-anchor="middle" fill="#1a7f5a" font-size="17" font-weight="800" font-family="Arial, sans-serif">APROBADO</text>
+    <text x="418" y="282" text-anchor="middle" fill="#1a7f5a" font-size="11" font-weight="700" letter-spacing="1" font-family="Arial, sans-serif">PUESTA EN</text>
+    <text x="418" y="296" text-anchor="middle" fill="#1a7f5a" font-size="11" font-weight="700" letter-spacing="1" font-family="Arial, sans-serif">SERVICIO</text>
+  </g>
+</svg>

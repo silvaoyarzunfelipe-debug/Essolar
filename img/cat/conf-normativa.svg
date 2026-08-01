@@ -1,0 +1,32 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Instalación conforme a normativa SEC">
+  <defs>
+    <linearGradient id="fB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf6f0"/><stop offset="1" stop-color="#d5e9e0"/></linearGradient>
+    <linearGradient id="escudo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22a06b"/><stop offset="1" stop-color="#126641"/></linearGradient>
+    <filter id="sB" x="-25%" y="-25%" width="160%" height="160%"><feDropShadow dx="3" dy="7" stdDeviation="7" flood-color="#0b2540" flood-opacity="0.24"/></filter>
+  </defs>
+  <rect width="400" height="300" fill="url(#fB)"/>
+  <!-- certificado -->
+  <g filter="url(#sB)">
+    <rect x="52" y="46" width="200" height="212" rx="8" fill="#ffffff" stroke="#c3ccd6" stroke-width="2"/>
+    <rect x="52" y="46" width="200" height="40" rx="8" fill="#1a7f5a"/>
+    <rect x="52" y="76" width="200" height="10" fill="#1a7f5a"/>
+    <text x="152" y="72" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" letter-spacing="1" font-family="Arial, sans-serif">CERTIFICADO</text>
+    <g fill="#e6ebf1">
+      <rect x="74" y="104" width="156" height="8" rx="4"/><rect x="74" y="120" width="156" height="8" rx="4"/>
+      <rect x="74" y="136" width="120" height="8" rx="4"/>
+      <rect x="74" y="164" width="156" height="8" rx="4"/><rect x="74" y="180" width="134" height="8" rx="4"/>
+    </g>
+    <g>
+      <rect x="74" y="206" width="66" height="22" rx="4" fill="#e8f0fe"/>
+      <text x="107" y="221" text-anchor="middle" fill="#1f6feb" font-size="11" font-weight="800" font-family="Arial, sans-serif">TE-1</text>
+      <rect x="150" y="206" width="66" height="22" rx="4" fill="#e6f4ee"/>
+      <text x="183" y="221" text-anchor="middle" fill="#1a7f5a" font-size="11" font-weight="800" font-family="Arial, sans-serif">TE-4</text>
+    </g>
+  </g>
+  <!-- escudo con check -->
+  <g filter="url(#sB)">
+    <path d="M300 74 L360 96 v66 c0 44 -32 72 -60 84 c-28 -12 -60 -40 -60 -84 V96 z" fill="url(#escudo)" stroke="#0f5637" stroke-width="3"/>
+    <path d="M274 158 l18 20 l36 -44" stroke="#ffffff" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="300" y="272" text-anchor="middle" fill="#126641" font-size="12" font-weight="800" font-family="Arial, sans-serif">REGLAMENTARIO</text>
+</svg>

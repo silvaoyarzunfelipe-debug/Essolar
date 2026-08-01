@@ -1,0 +1,70 @@
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Instalación de paneles solares sobre techo">
+  <defs>
+    <linearGradient id="cieloI" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fc4e8"/><stop offset="1" stop-color="#d8ecf8"/>
+    </linearGradient>
+    <linearGradient id="techoI" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b9603c"/><stop offset="1" stop-color="#8f4526"/>
+    </linearGradient>
+    <linearGradient id="panelI" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b4f7e"/><stop offset="0.55" stop-color="#16304f"/><stop offset="1" stop-color="#0e2036"/>
+    </linearGradient>
+    <filter id="shI" x="-25%" y="-25%" width="160%" height="160%">
+      <feDropShadow dx="4" dy="7" stdDeviation="7" flood-color="#0b2540" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="600" height="400" fill="url(#cieloI)"/>
+  <circle cx="512" cy="66" r="34" fill="#ffe08a"/>
+  <circle cx="512" cy="66" r="52" fill="#ffe08a" opacity="0.25"/>
+  <ellipse cx="150" cy="70" rx="86" ry="16" fill="#fff" opacity="0.65"/>
+  <ellipse cx="300" cy="52" rx="60" ry="12" fill="#fff" opacity="0.5"/>
+
+  <!-- techo inclinado -->
+  <polygon points="0,400 0,286 360,150 600,236 600,400" fill="url(#techoI)"/>
+  <g stroke="#7a3a1f" stroke-width="2" opacity="0.55">
+    <line x1="0" y1="318" x2="600" y2="272"/><line x1="0" y1="352" x2="600" y2="308"/>
+    <line x1="0" y1="386" x2="600" y2="344"/>
+  </g>
+
+  <!-- rieles de montaje -->
+  <g stroke="#9aa8b6" stroke-width="9" stroke-linecap="round">
+    <line x1="60" y1="300" x2="420" y2="166"/>
+    <line x1="96" y1="356" x2="456" y2="222"/>
+  </g>
+
+  <!-- paneles ya instalados -->
+  <g filter="url(#shI)">
+    <polygon points="72,286 176,247 244,272 140,311" fill="url(#panelI)" stroke="#5e8fc0" stroke-width="2.5"/>
+    <polygon points="184,244 288,205 356,230 252,269" fill="url(#panelI)" stroke="#5e8fc0" stroke-width="2.5"/>
+    <polygon points="150,332 254,293 322,318 218,357" fill="url(#panelI)" stroke="#5e8fc0" stroke-width="2.5"/>
+  </g>
+  <g stroke="#7aa8d4" stroke-width="1.2" opacity="0.75">
+    <line x1="106" y1="273" x2="210" y2="298"/><line x1="140" y1="260" x2="244" y2="285"/>
+    <line x1="218" y1="231" x2="322" y2="256"/><line x1="252" y1="218" x2="356" y2="243"/>
+  </g>
+
+  <!-- panel siendo colocado (en el aire, con manos/estructura) -->
+  <g filter="url(#shI)" transform="rotate(-6 340 210)">
+    <polygon points="300,196 404,157 472,182 368,221" fill="url(#panelI)" stroke="#f5a623" stroke-width="3.5"/>
+    <line x1="334" y1="183" x2="438" y2="208" stroke="#7aa8d4" stroke-width="1.4"/>
+  </g>
+
+  <!-- instalador (silueta simplificada, casco naranja) -->
+  <g>
+    <ellipse cx="452" cy="330" rx="34" ry="9" fill="#0b2540" opacity="0.18"/>
+    <rect x="436" y="252" width="34" height="62" rx="13" fill="#1a7f5a"/>
+    <rect x="440" y="308" width="12" height="26" rx="5" fill="#2f3a45"/>
+    <rect x="456" y="308" width="12" height="26" rx="5" fill="#2f3a45"/>
+    <path d="M436 268 L404 214" stroke="#1a7f5a" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="453" cy="234" r="17" fill="#e8b98e"/>
+    <path d="M434 232 a19 19 0 0 1 38 0 z" fill="#f5a623"/>
+    <rect x="430" y="230" width="46" height="6" rx="3" fill="#e08c00"/>
+  </g>
+
+  <!-- caja de herramientas -->
+  <g>
+    <rect x="512" y="296" width="60" height="38" rx="5" fill="#e04a2f" stroke="#b53a24" stroke-width="2"/>
+    <rect x="512" y="306" width="60" height="6" fill="#b53a24"/>
+    <rect x="532" y="286" width="20" height="10" rx="4" fill="none" stroke="#b53a24" stroke-width="3"/>
+  </g>
+</svg>

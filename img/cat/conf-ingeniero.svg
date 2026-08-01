@@ -1,0 +1,50 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ingeniero eléctrico dimensionando el sistema">
+  <defs>
+    <linearGradient id="fA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef3f9"/><stop offset="1" stop-color="#dbe4ee"/></linearGradient>
+    <filter id="sA" x="-25%" y="-25%" width="160%" height="160%"><feDropShadow dx="3" dy="6" stdDeviation="6" flood-color="#0b2540" flood-opacity="0.22"/></filter>
+  </defs>
+  <rect width="400" height="300" fill="url(#fA)"/>
+  <circle cx="342" cy="52" r="46" fill="#1f6feb" opacity="0.07"/>
+  <!-- plano técnico -->
+  <g filter="url(#sA)">
+    <rect x="42" y="60" width="222" height="176" rx="8" fill="#14406b"/>
+    <rect x="50" y="68" width="206" height="160" rx="5" fill="#0e2a45"/>
+    <g stroke="#2e5f8a" stroke-width="1" opacity="0.6">
+      <line x1="50" y1="100" x2="256" y2="100"/><line x1="50" y1="132" x2="256" y2="132"/>
+      <line x1="50" y1="164" x2="256" y2="164"/><line x1="50" y1="196" x2="256" y2="196"/>
+      <line x1="90" y1="68" x2="90" y2="228"/><line x1="140" y1="68" x2="140" y2="228"/>
+      <line x1="190" y1="68" x2="190" y2="228"/>
+    </g>
+    <!-- diagrama unilineal -->
+    <g stroke="#4cc46f" stroke-width="2.5" fill="none">
+      <rect x="70" y="112" width="34" height="26" rx="3"/>
+      <line x1="104" y1="125" x2="140" y2="125"/>
+      <circle cx="156" cy="125" r="16"/>
+      <line x1="172" y1="125" x2="206" y2="125"/>
+      <rect x="206" y="112" width="34" height="26" rx="3"/>
+      <line x1="156" y1="141" x2="156" y2="176"/>
+      <path d="M144 176 h24 M148 184 h16 M152 192 h8"/>
+    </g>
+    <text x="87" y="176" fill="#f5a623" font-size="11" font-weight="700" font-family="Arial, sans-serif">5,58 kWp</text>
+    <text x="196" y="176" fill="#f5a623" font-size="11" font-weight="700" font-family="Arial, sans-serif">8 kW</text>
+    <text x="60" y="216" fill="#8fb3d4" font-size="9" font-family="Arial, sans-serif">DIMENSIONAMIENTO · CARGAS · PROTECCIONES</text>
+  </g>
+  <!-- casco + calculadora -->
+  <g filter="url(#sA)">
+    <ellipse cx="316" cy="248" rx="52" ry="10" fill="#0b2540" opacity="0.15"/>
+    <path d="M276 214 a40 40 0 0 1 80 0 z" fill="#f5a623"/>
+    <rect x="270" y="212" width="92" height="12" rx="6" fill="#e08c00"/>
+    <path d="M300 180 a16 16 0 0 1 32 0" fill="none" stroke="#e08c00" stroke-width="3"/>
+  </g>
+  <g filter="url(#sA)">
+    <rect x="286" y="96" width="72" height="94" rx="7" fill="#f7f9fb" stroke="#c3ccd6" stroke-width="2"/>
+    <rect x="294" y="104" width="56" height="22" rx="3" fill="#0e2a45"/>
+    <text x="345" y="120" text-anchor="end" fill="#4cc46f" font-size="12" font-weight="700" font-family="Arial, sans-serif">12,4</text>
+    <g fill="#dbe3ec">
+      <rect x="294" y="134" width="15" height="12" rx="2"/><rect x="315" y="134" width="15" height="12" rx="2"/><rect x="336" y="134" width="15" height="12" rx="2"/>
+      <rect x="294" y="152" width="15" height="12" rx="2"/><rect x="315" y="152" width="15" height="12" rx="2"/><rect x="336" y="152" width="15" height="12" rx="2"/>
+      <rect x="294" y="170" width="15" height="12" rx="2"/><rect x="315" y="170" width="15" height="12" rx="2"/>
+    </g>
+    <rect x="336" y="170" width="15" height="12" rx="2" fill="#f5a623"/>
+  </g>
+</svg>

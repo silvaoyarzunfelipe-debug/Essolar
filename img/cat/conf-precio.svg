@@ -1,0 +1,31 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Precio del kit publicado y servicios cotizados aparte">
+  <defs>
+    <linearGradient id="fD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdf4e6"/><stop offset="1" stop-color="#f4e6cf"/></linearGradient>
+    <filter id="sD" x="-25%" y="-25%" width="160%" height="160%"><feDropShadow dx="3" dy="7" stdDeviation="7" flood-color="#0b2540" flood-opacity="0.22"/></filter>
+  </defs>
+  <rect width="400" height="300" fill="url(#fD)"/>
+  <!-- etiqueta de precio -->
+  <g filter="url(#sD)" transform="rotate(-6 150 120)">
+    <path d="M60 66 h150 a10 10 0 0 1 10 10 v78 a10 10 0 0 1 -10 10 H60 L28 115 z" fill="#f5a623" stroke="#e08c00" stroke-width="3"/>
+    <circle cx="62" cy="115" r="11" fill="#fdf4e6" stroke="#e08c00" stroke-width="3"/>
+    <text x="152" y="108" text-anchor="middle" fill="#0b2540" font-size="21" font-weight="800" font-family="Arial, sans-serif">$4.755.300</text>
+    <text x="152" y="132" text-anchor="middle" fill="#7a5200" font-size="11" font-weight="700" font-family="Arial, sans-serif">SOLO EQUIPOS · IVA INCL.</text>
+  </g>
+  <!-- desglose -->
+  <g filter="url(#sD)">
+    <rect x="188" y="150" width="188" height="126" rx="9" fill="#ffffff" stroke="#e0d3ba" stroke-width="2"/>
+    <text x="206" y="176" fill="#0b2540" font-size="12" font-weight="800" font-family="Arial, sans-serif">Se cotizan aparte:</text>
+    <g font-family="Arial, sans-serif" font-size="11" fill="#55637a">
+      <circle cx="212" cy="196" r="4" fill="#1a7f5a"/><text x="224" y="200">Instalación</text>
+      <circle cx="212" cy="220" r="4" fill="#1a7f5a"/><text x="224" y="224">Flete y paletizado</text>
+      <circle cx="212" cy="244" r="4" fill="#1a7f5a"/><text x="224" y="248">Tramitación SEC</text>
+    </g>
+  </g>
+  <!-- monedas -->
+  <g filter="url(#sD)">
+    <ellipse cx="86" cy="248" rx="34" ry="11" fill="#e8b93f" stroke="#c99a22" stroke-width="2"/>
+    <ellipse cx="86" cy="236" rx="34" ry="11" fill="#f5cf5f" stroke="#c99a22" stroke-width="2"/>
+    <ellipse cx="86" cy="224" rx="34" ry="11" fill="#f9dc85" stroke="#c99a22" stroke-width="2"/>
+    <text x="86" y="228" text-anchor="middle" fill="#8a6a14" font-size="11" font-weight="800" font-family="Arial, sans-serif">CLP</text>
+  </g>
+</svg>
