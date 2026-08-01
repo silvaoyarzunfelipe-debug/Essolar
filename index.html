@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESOLAR | Kits solares con respaldo de ingeniería en Chile</title>
   <meta name="description" content="Kits solares On-Grid y Off-Grid con equipos GoodWe, asesoría de ingeniero eléctrico y tramitación SEC (TE-1/TE-4). Cotiza tu kit solar en Chile.">
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="stylesheet" href="css/styles.css?v=12">
 </head>
 <body>
 
@@ -19,8 +19,10 @@
       <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
       <a href="index.html#servicios">Servicios</a>
       <a href="index.html#como-elegir">¿Cómo elegir?</a>
+      <a href="index.html#faq">Preguntas frecuentes</a>
     </nav>
-    <a href="cotizacion.html" class="header-cta">Solicitar cotización</a>
+    <a href="cotizacion.html" class="header-cta">Cotizar</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
 </header>
 
@@ -82,7 +84,7 @@
     <img class="hero-foto" src="img/hero.jpg" alt="" onerror="this.remove()">
   </div>
   <div class="contenedor hero-contenido">
-    <span class="hero-kicker">⚡ Precios publicados · Sin cotizaciones a ciegas</span>
+    <span class="hero-kicker">⚡ Precios publicados, sin sorpresas</span>
     <h1>Energía solar con respaldo de ingeniería</h1>
     <p>Kits solares GoodWe con el precio a la vista, dimensionados por ingeniero eléctrico. Y el trámite que nadie quiere hacer — la tramitación SEC — lo hacemos nosotros.</p>
     <div class="hero-acciones">
@@ -234,6 +236,39 @@
   </div>
 </section>
 
+<section class="seccion seccion-alt" id="faq">
+  <div class="contenedor">
+    <span class="kicker">Preguntas frecuentes</span>
+    <h2>Lo que todos preguntan antes de comprar</h2>
+    <div class="faq">
+      <details>
+        <summary>¿El precio publicado incluye la instalación?</summary>
+        <p>No. El precio que ves es del kit completo de equipos con IVA incluido: paneles, inversor, batería si corresponde, y el set de montaje, cables y protecciones. La instalación, el flete y la tramitación SEC se cotizan aparte porque dependen de tu comuna, del tipo de techo y del alcance del proyecto. Lo separamos para que sepas exactamente qué estás pagando en cada cosa.</p>
+      </details>
+      <details>
+        <summary>¿Qué es la tramitación SEC y por qué la necesito?</summary>
+        <p>Toda instalación eléctrica en Chile debe declararse ante la Superintendencia de Electricidad y Combustibles. Los sistemas off-grid se declaran con el trámite TE-1; los conectados a red requieren TE-4 más el proceso de conexión con tu distribuidora, que es lo que activa el descuento por inyección (netbilling, Ley 21.118). Sin ese trámite tu sistema no es reglamentario y, en el caso on-grid, no recibes el descuento en la boleta. Nosotros hacemos el trámite completo como servicio.</p>
+      </details>
+      <details>
+        <summary>¿Cómo sé qué kit me sirve?</summary>
+        <p>Con dos datos: cuánta energía consumes al día y qué cargas parten al mismo tiempo. El consumo define cuántos paneles y cuánta batería necesitas; las cargas de partida (bombas, compresores, herramientas) definen el tamaño del inversor. Si nos envías tu boleta o una lista de tus equipos, un ingeniero eléctrico revisa el dimensionamiento antes de que compres, sin costo.</p>
+      </details>
+      <details>
+        <summary>¿Off-Grid u On-Grid?</summary>
+        <p>Si tienes conexión a la distribuidora y tu objetivo es bajar la cuenta, un kit On-Grid es lo más rentable: no pagas batería y los excedentes se descuentan de tu boleta. Si no hay red — parcela, cabaña, faena — necesitas Off-Grid con batería. Los inversores híbridos GoodWe que usamos admiten batería a futuro, así que puedes partir On-Grid y sumar respaldo después sin cambiar el equipo central.</p>
+      </details>
+      <details>
+        <summary>¿Qué garantía tienen los equipos?</summary>
+        <p>Trabajamos con GoodWe: los inversores tienen 5 años de garantía de fábrica, ampliables a 10 registrando el equipo en el portal del fabricante, y las baterías de litio Lynx tienen 10 años. Los paneles mantienen la garantía de su fabricante. Todo es equipo original con respaldo de marca, no genérico.</p>
+      </details>
+      <details>
+        <summary>¿Hacen despacho a regiones?</summary>
+        <p>Sí. El flete se cotiza según destino e incluye paletizado, porque los paneles y las baterías necesitan embalaje adecuado para llegar sin daños. También puedes retirar los equipos y coordinar tu propio transporte si prefieres.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="contenedor">
     <div class="footer-grid">
@@ -255,8 +290,10 @@
       </div>
       <div>
         <h4>Contacto</h4>
+        <a href="https://wa.me/56948881289" target="_blank" rel="noopener">✆ +56 9 4888 1289</a>
+        <a href="mailto:contacto@eccohouse.cl">✉ contacto@eccohouse.cl</a>
         <a href="cotizacion.html">Solicitar cotización</a>
-        <a href="mailto:contacto@eccohouse.cl">contacto@eccohouse.cl</a>
+        <p style="font-size:0.85rem;opacity:0.75;margin-top:6px;">Puerto Montt, Región de Los Lagos<br>Despacho a todo Chile</p>
       </div>
     </div>
     <div class="legal">
@@ -266,7 +303,7 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=9"></script>
+<script src="js/data.js?v=11"></script>
 <script>
   // Kits destacados: uno de cada segmento representativo
   const btnHero = document.getElementById("btn-contacto-hero");
@@ -283,6 +320,27 @@
     el.innerHTML = plantillaKit(p);
     cont.appendChild(el);
   });
+</script>
+
+<a class="flotante" id="flotante-contacto" href="#" aria-label="Contactar por WhatsApp">
+  <span>✆</span><span class="txt">Cotiza gratis</span>
+</a>
+
+<script>
+  (function () {
+    var t = document.getElementById("nav-toggle");
+    var n = document.querySelector(".nav");
+    if (t && n) t.addEventListener("click", function () {
+      var abierto = n.classList.toggle("abierto");
+      t.setAttribute("aria-expanded", abierto);
+      t.textContent = abierto ? "✕" : "☰";
+    });
+    var f = document.getElementById("flotante-contacto");
+    if (f && typeof enlaceContacto === "function") {
+      f.href = enlaceContacto("Hola, quiero cotizar un kit solar.", "Cotización kit solar");
+      if (!hayWhatsapp()) f.querySelector("span").textContent = "✉";
+    }
+  })();
 </script>
 
 </body>

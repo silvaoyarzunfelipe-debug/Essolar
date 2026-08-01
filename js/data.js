@@ -203,6 +203,30 @@ function textoContacto() {
   return hayWhatsapp() ? "✆ Consultar WhatsApp" : "✉ Consultar por correo";
 }
 
+// Varios kits comparten potencia de inversor; el título debe decir qué los diferencia.
+function tituloKit(p) {
+  const base = `Kit ${p.sistema} ${p.inversorKw} kW · ${p.paneles} paneles`;
+  return p.batKwh > 0
+    ? `${base} · batería ${String(p.batKwh).replace(".", ",")} kWh`
+    : base;
+}
+
+// Etiqueta corta de uso, para que el cliente se reconozca en el kit.
+function perfilKit(p) {
+  const kwp = p.kwp, bat = p.batKwh;
+  if (p.sistema === "On-Grid") {
+    if (kwp <= 3.2) return "Casa con cuenta media";
+    if (kwp <= 5) return "Casa familiar";
+    if (kwp <= 6.5) return "Casa grande o auto eléctrico";
+    return "Pyme y oficina";
+  }
+  if (p.inversorKw >= 16) return kwp >= 11 ? "Instalación comercial" : "Pyme y maquinaria";
+  if (p.inversorKw === 12) return kwp >= 11 ? "Lodge y turismo rural" : "Casa grande o taller";
+  if (bat >= 14.3) return "Residencia permanente";
+  if (bat >= 8.75) return "Familia off-grid";
+  return "Cabaña y parcela";
+}
+
 // Imagen de kit estilo fotografía: casa con techo de paneles al atardecer,
 // cinta con kWp y batería si el kit la incluye.
 function svgKitBanner(p) {
@@ -309,7 +333,8 @@ function plantillaKit(p) {
       <span class="badge ${p.sistema === "On-Grid" ? "ongrid" : ""}">${p.sistema}</span>
       <span class="badge marca">GoodWe</span>
     </div>
-    <h3>${p.nombre}</h3>
+    <h3>${tituloKit(p)}</h3>
+    <p class="perfil">Ideal para: <strong>${perfilKit(p)}</strong></p>
     <div class="chips">
       <span><strong>Inversor:</strong> ${p.inversorKw} kW</span>
       <span><strong>Paneles:</strong> ${p.paneles} × ${p.panelW} W</span>
@@ -321,8 +346,10 @@ function plantillaKit(p) {
       <p>Instalación, flete y tramitación SEC se cotizan aparte según proyecto y comuna.</p>
     </div>
     <div class="acciones">
-      <a class="btn btn-verde" href="producto.html?sku=${p.sku}">Ver kit</a>
-      <a class="btn btn-sol" href="cotizacion.html?sku=${p.sku}">Cotizar</a>
+      <a class="btn btn-sol" href="producto.html?sku=${p.sku}">Ver detalle del kit</a>
     </div>
-    <a class="btn btn-wsp btn-block" href="${wsp}">${textoContacto()}</a>`;
+    <div class="acciones-sec">
+      <a href="cotizacion.html?sku=${p.sku}">Cotizar con servicios</a>
+      <a href="${wsp}">${hayWhatsapp() ? "WhatsApp" : "Correo"}</a>
+    </div>`;
 }

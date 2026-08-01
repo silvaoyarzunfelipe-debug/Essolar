@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kit solar | ESOLAR</title>
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="stylesheet" href="css/styles.css?v=12">
 </head>
 <body>
 
@@ -18,8 +18,10 @@
       <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
       <a href="index.html#servicios">Servicios</a>
       <a href="index.html#como-elegir">¿Cómo elegir?</a>
+      <a href="index.html#faq">Preguntas frecuentes</a>
     </nav>
-    <a href="cotizacion.html" class="header-cta">Solicitar cotización</a>
+    <a href="cotizacion.html" class="header-cta">Cotizar</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
 </header>
 
@@ -50,8 +52,10 @@
       </div>
       <div>
         <h4>Contacto</h4>
+        <a href="https://wa.me/56948881289" target="_blank" rel="noopener">✆ +56 9 4888 1289</a>
+        <a href="mailto:contacto@eccohouse.cl">✉ contacto@eccohouse.cl</a>
         <a href="cotizacion.html">Solicitar cotización</a>
-        <a href="mailto:contacto@eccohouse.cl">contacto@eccohouse.cl</a>
+        <p style="font-size:0.85rem;opacity:0.75;margin-top:6px;">Puerto Montt, Región de Los Lagos<br>Despacho a todo Chile</p>
       </div>
     </div>
     <div class="legal">
@@ -61,11 +65,11 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=9"></script>
+<script src="js/data.js?v=11"></script>
 <script>
   const sku = new URLSearchParams(location.search).get("sku");
   const p = ESOLAR_PRODUCTS.find(x => x.sku === sku) || ESOLAR_PRODUCTS[0];
-  document.title = `${p.nombre} · ${p.resumen.split("·")[0].trim()} | ESOLAR`;
+  document.title = `${tituloKit(p)} | ESOLAR`;
 
   const filaBateria = p.batKwh > 0
     ? `<tr><td>Batería de litio GoodWe Lynx</td><td>${String(p.batKwh).replace(".", ",")} kWh</td></tr>`
@@ -88,7 +92,7 @@
           <span class="badge marca">GoodWe</span>
           <span class="badge">SKU ${p.sku}</span>
         </div>
-        <h1>${p.nombre}</h1>
+        <h1>${tituloKit(p)}</h1>
         <p class="resumen">${p.resumen}</p>
         <div class="kit-img" style="margin-top:18px;">${svgKitBanner(p)}<img class="kit-foto" src="img/kits/${p.sku}.jpg" alt="" onerror="this.parentElement.querySelector('.kit-chips-img').remove(); this.remove()"><div class="kit-chips-img"><span class="chip-kwp">${String(p.kwp.toFixed(2)).replace(/0$/, "").replace(".", ",")} kWp</span>${p.batKwh > 0 ? `<span class="chip-bat">🔋 ${String(p.batKwh).replace(".", ",")} kWh</span>` : ""}</div></div>
         <p class="precio-grande">${clp(p.precio)}<small>Solo equipos · IVA incluido</small></p>
@@ -135,6 +139,27 @@
       btnCotizar.href = url.pathname + url.search;
     });
   });
+</script>
+
+<a class="flotante" id="flotante-contacto" href="#" aria-label="Contactar por WhatsApp">
+  <span>✆</span><span class="txt">Cotiza gratis</span>
+</a>
+
+<script>
+  (function () {
+    var t = document.getElementById("nav-toggle");
+    var n = document.querySelector(".nav");
+    if (t && n) t.addEventListener("click", function () {
+      var abierto = n.classList.toggle("abierto");
+      t.setAttribute("aria-expanded", abierto);
+      t.textContent = abierto ? "✕" : "☰";
+    });
+    var f = document.getElementById("flotante-contacto");
+    if (f && typeof enlaceContacto === "function") {
+      f.href = enlaceContacto("Hola, quiero cotizar un kit solar.", "Cotización kit solar");
+      if (!hayWhatsapp()) f.querySelector("span").textContent = "✉";
+    }
+  })();
 </script>
 
 </body>

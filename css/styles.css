@@ -147,6 +147,14 @@ img { max-width: 100%; }
 .kit-img { border-radius: 8px; overflow: hidden; line-height: 0; border: 1px solid var(--gris-300); position: relative; }
 .kit-img svg { width: 100%; height: auto; display: block; }
 .kit-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.perfil { font-size: 0.85rem; color: var(--gris-600); margin-top: -4px; }
+.perfil strong { color: var(--verde-600); }
+.acciones-sec {
+  display: flex; gap: 16px; justify-content: center;
+  border-top: 1px solid var(--gris-100); padding-top: 10px; margin-top: 2px;
+}
+.acciones-sec a { font-size: 0.85rem; font-weight: 600; color: var(--gris-600); }
+.acciones-sec a:hover { color: var(--azul-500); }
 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
 .chips span {
   border: 1px solid var(--gris-300); border-radius: 7px; padding: 5px 9px;
@@ -283,7 +291,69 @@ img { max-width: 100%; }
   font-size: 0.8rem; opacity: 0.7;
 }
 
+/* ---------- Menú móvil ---------- */
+.nav-toggle {
+  display: none;
+  background: none; border: 1px solid var(--gris-300); border-radius: 8px;
+  font-size: 1.3rem; line-height: 1; padding: 7px 12px; cursor: pointer;
+  color: var(--azul-900);
+}
+
+/* ---------- Botón flotante de contacto ---------- */
+.flotante {
+  position: fixed; right: 18px; bottom: 18px; z-index: 90;
+  background: #1fae5a; color: #fff;
+  border-radius: 999px; padding: 14px 20px;
+  font-weight: 700; font-size: 0.95rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+  display: flex; align-items: center; gap: 8px;
+  transition: transform .15s;
+}
+.flotante:hover { background: #178a47; color: #fff; transform: translateY(-2px); }
+.flotante .txt { display: inline; }
+
+/* ---------- FAQ ---------- */
+.faq { max-width: 820px; margin-top: 26px; }
+.faq details {
+  border: 1px solid var(--gris-300); border-radius: var(--radio);
+  padding: 16px 20px; margin-bottom: 12px; background: var(--blanco);
+}
+.faq details[open] { border-color: var(--verde-600); }
+.faq summary {
+  font-weight: 700; color: var(--azul-900); cursor: pointer;
+  list-style: none; display: flex; justify-content: space-between; gap: 12px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--sol-600); font-size: 1.3rem; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq p { margin-top: 12px; font-size: 0.94rem; color: var(--gris-600); }
+
+@media (max-width: 860px) {
+  .header-inner { padding: 10px 0; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .logo { order: 1; flex: 1 1 auto; min-width: 0; }
+  .header-cta { order: 2; padding: 8px 14px; font-size: 0.85rem; white-space: nowrap; flex: 0 0 auto; }
+  .nav-toggle { display: block; order: 3; flex: 0 0 auto; }
+  .logo-img { height: 40px; }
+  .logo-nombre { font-size: 1.15rem; letter-spacing: 0.1em; }
+  .logo-sub { font-size: 0.75rem; }
+  .nav {
+    order: 4; width: 100%; flex: 1 0 100%; flex-direction: column; gap: 0;
+    display: none; border-top: 1px solid var(--gris-300); margin-top: 4px; padding-top: 4px;
+  }
+  .nav.abierto { display: flex; }
+  .nav a { padding: 12px 2px; border-bottom: 1px solid var(--gris-100); }
+  .nav a:last-child { border-bottom: none; }
+}
+
 @media (max-width: 720px) {
-  .hero h1 { font-size: 1.9rem; }
-  .header-inner { justify-content: center; }
+  .hero { padding: 56px 0 64px; }
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+  .hero-kicker { font-size: 0.72rem; letter-spacing: 0.08em; }
+  .hero-acciones .btn { flex: 1 1 100%; text-align: center; }
+  .barra-confianza-inner { gap: 8px 18px; font-size: 0.8rem; }
+  .seccion { padding: 44px 0; }
+  .seccion h2 { font-size: 1.45rem; }
+  .flotante { padding: 13px 16px; right: 14px; bottom: 14px; }
+  .flotante .txt { display: none; }
 }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda | ESOLAR — Kits solares On-Grid y Off-Grid</title>
   <meta name="description" content="Catálogo de kits solares GoodWe en Chile: Off-Grid con batería de litio y On-Grid con netbilling. Filtra por potencia y sistema.">
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="stylesheet" href="css/styles.css?v=12">
 </head>
 <body>
 
@@ -19,8 +19,10 @@
       <a href="tienda.html?sistema=On-Grid">Kits On-Grid</a>
       <a href="index.html#servicios">Servicios</a>
       <a href="index.html#como-elegir">¿Cómo elegir?</a>
+      <a href="index.html#faq">Preguntas frecuentes</a>
     </nav>
-    <a href="cotizacion.html" class="header-cta">Solicitar cotización</a>
+    <a href="cotizacion.html" class="header-cta">Cotizar</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
 </header>
 
@@ -85,8 +87,10 @@
       </div>
       <div>
         <h4>Contacto</h4>
+        <a href="https://wa.me/56948881289" target="_blank" rel="noopener">✆ +56 9 4888 1289</a>
+        <a href="mailto:contacto@eccohouse.cl">✉ contacto@eccohouse.cl</a>
         <a href="cotizacion.html">Solicitar cotización</a>
-        <a href="mailto:contacto@eccohouse.cl">contacto@eccohouse.cl</a>
+        <p style="font-size:0.85rem;opacity:0.75;margin-top:6px;">Puerto Montt, Región de Los Lagos<br>Despacho a todo Chile</p>
       </div>
     </div>
     <div class="legal">
@@ -96,7 +100,7 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=9"></script>
+<script src="js/data.js?v=11"></script>
 <script>
   const params = new URLSearchParams(location.search);
   const selSistema = document.getElementById("f-sistema");
@@ -135,6 +139,27 @@
   selKw.addEventListener("change", render);
   selOrden.addEventListener("change", render);
   render();
+</script>
+
+<a class="flotante" id="flotante-contacto" href="#" aria-label="Contactar por WhatsApp">
+  <span>✆</span><span class="txt">Cotiza gratis</span>
+</a>
+
+<script>
+  (function () {
+    var t = document.getElementById("nav-toggle");
+    var n = document.querySelector(".nav");
+    if (t && n) t.addEventListener("click", function () {
+      var abierto = n.classList.toggle("abierto");
+      t.setAttribute("aria-expanded", abierto);
+      t.textContent = abierto ? "✕" : "☰";
+    });
+    var f = document.getElementById("flotante-contacto");
+    if (f && typeof enlaceContacto === "function") {
+      f.href = enlaceContacto("Hola, quiero cotizar un kit solar.", "Cotización kit solar");
+      if (!hayWhatsapp()) f.querySelector("span").textContent = "✉";
+    }
+  })();
 </script>
 
 </body>
