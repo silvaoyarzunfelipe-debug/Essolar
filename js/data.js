@@ -1,6 +1,6 @@
-// Catálogo ESSOLAR — precios CLP IVA incluido, solo equipos.
+// Catálogo ESOLAR — precios CLP IVA incluido, solo equipos.
 // NOTA: capacidades de batería pendientes de ajustar a módulos GoodWe Lynx reales del distribuidor.
-const ESSOLAR_PRODUCTS = [
+const ESOLAR_PRODUCTS = [
   {
     sku: "ES-OG-4K-B5", sistema: "Off-Grid", inversorKw: 4, paneles: 5, panelW: 620, kwp: 3.10, batKwh: 5,
     precio: 2386300,
@@ -174,10 +174,9 @@ const ESSOLAR_PRODUCTS = [
   }
 ];
 
-const ESSOLAR_CONFIG = {
-  // TODO: reemplazar por el número de WhatsApp comercial de ESSOLAR
-  whatsapp: "56900000000",
-  email: "silvaoyarzunfelipe@gmail.com",
+const ESOLAR_CONFIG = {
+  whatsapp: "56948881289",
+  email: "contacto@eccohouse.cl",
   garantiaInversor: "Inversor GoodWe: 5 años, ampliable a 10 con registro",
   garantiaBateria: "Batería GoodWe Lynx: 10 años",
   garantiaPaneles: "Paneles: garantía según fabricante"
@@ -190,14 +189,14 @@ function clp(n) {
 // Mientras el WhatsApp siga siendo el placeholder, los botones de contacto
 // abren el correo en vez de un número que no existe.
 function hayWhatsapp() {
-  return ESSOLAR_CONFIG.whatsapp && ESSOLAR_CONFIG.whatsapp !== "56900000000";
+  return ESOLAR_CONFIG.whatsapp && ESOLAR_CONFIG.whatsapp !== "56900000000";
 }
 
 function enlaceContacto(mensaje, asunto) {
   if (hayWhatsapp()) {
-    return `https://wa.me/${ESSOLAR_CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+    return `https://wa.me/${ESOLAR_CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
   }
-  return `mailto:${ESSOLAR_CONFIG.email}?subject=${encodeURIComponent(asunto || "Consulta kit solar")}&body=${encodeURIComponent(mensaje)}`;
+  return `mailto:${ESOLAR_CONFIG.email}?subject=${encodeURIComponent(asunto || "Consulta kit solar")}&body=${encodeURIComponent(mensaje)}`;
 }
 
 function textoContacto() {

@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESSOLAR | Kits solares con respaldo de ingeniería en Chile</title>
+  <title>ESOLAR | Kits solares con respaldo de ingeniería en Chile</title>
   <meta name="description" content="Kits solares On-Grid y Off-Grid con equipos GoodWe, asesoría de ingeniero eléctrico y tramitación SEC (TE-1/TE-4). Cotiza tu kit solar en Chile.">
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=10">
 </head>
 <body>
 
 <header class="header">
   <div class="contenedor header-inner">
-    <a href="index.html" class="logo"><img src="img/logo-icon.svg" alt="" class="logo-img"><span class="logo-texto"><span class="logo-nombre">ESSOLAR</span><span class="logo-sub">Kits solares · Chile</span></span></a>
+    <a href="index.html" class="logo"><img src="img/logo-icon.svg" alt="" class="logo-img"><span class="logo-texto"><span class="logo-nombre">ESOLAR</span><span class="logo-sub">eccohouse.cl</span></span></a>
     <nav class="nav">
       <a href="index.html" class="activo">Inicio</a>
       <a href="tienda.html">Tienda</a>
@@ -238,7 +238,7 @@
   <div class="contenedor">
     <div class="footer-grid">
       <div>
-        <h4>ESSOLAR</h4>
+        <h4>ESOLAR</h4>
         <p style="font-size:0.9rem;">Kits solares con respaldo de ingeniería eléctrica. Equipos GoodWe, dimensionamiento serio y tramitación SEC como servicio.</p>
       </div>
       <div>
@@ -256,17 +256,17 @@
       <div>
         <h4>Contacto</h4>
         <a href="cotizacion.html">Solicitar cotización</a>
-        <a href="mailto:silvaoyarzunfelipe@gmail.com">silvaoyarzunfelipe@gmail.com</a>
+        <a href="mailto:contacto@eccohouse.cl">contacto@eccohouse.cl</a>
       </div>
     </div>
     <div class="legal">
       <p>Precios de kits solo equipos, IVA incluido. Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna. Las estimaciones de generación y ahorro son referenciales y dependen de la ubicación, orientación e inclinación del techo y del perfil de consumo; la configuración final se valida en visita técnica.</p>
-      <p style="margin-top:8px;">© 2026 ESSOLAR — Todos los derechos reservados.</p>
+      <p style="margin-top:8px;">© 2026 ESOLAR — Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
 
-<script src="js/data.js?v=8"></script>
+<script src="js/data.js?v=9"></script>
 <script>
   // Kits destacados: uno de cada segmento representativo
   const btnHero = document.getElementById("btn-contacto-hero");
@@ -276,7 +276,7 @@
   const destacados = ["ES-OG-4K-B5", "ES-OG-6K-B8", "ES-OG-8K-B8", "ES-ON-5K"];
   const cont = document.getElementById("kits-destacados");
   destacados.forEach(sku => {
-    const p = ESSOLAR_PRODUCTS.find(x => x.sku === sku);
+    const p = ESOLAR_PRODUCTS.find(x => x.sku === sku);
     if (!p) return;
     const el = document.createElement("div");
     el.className = "kit";

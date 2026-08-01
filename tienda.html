@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda | ESSOLAR — Kits solares On-Grid y Off-Grid</title>
+  <title>Tienda | ESOLAR — Kits solares On-Grid y Off-Grid</title>
   <meta name="description" content="Catálogo de kits solares GoodWe en Chile: Off-Grid con batería de litio y On-Grid con netbilling. Filtra por potencia y sistema.">
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=10">
 </head>
 <body>
 
 <header class="header">
   <div class="contenedor header-inner">
-    <a href="index.html" class="logo"><img src="img/logo-icon.svg" alt="" class="logo-img"><span class="logo-texto"><span class="logo-nombre">ESSOLAR</span><span class="logo-sub">Kits solares · Chile</span></span></a>
+    <a href="index.html" class="logo"><img src="img/logo-icon.svg" alt="" class="logo-img"><span class="logo-texto"><span class="logo-nombre">ESOLAR</span><span class="logo-sub">eccohouse.cl</span></span></a>
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="tienda.html" class="activo">Tienda</a>
@@ -68,7 +68,7 @@
   <div class="contenedor">
     <div class="footer-grid">
       <div>
-        <h4>ESSOLAR</h4>
+        <h4>ESOLAR</h4>
         <p style="font-size:0.9rem;">Kits solares con respaldo de ingeniería eléctrica. Equipos GoodWe, dimensionamiento serio y tramitación SEC como servicio.</p>
       </div>
       <div>
@@ -86,17 +86,17 @@
       <div>
         <h4>Contacto</h4>
         <a href="cotizacion.html">Solicitar cotización</a>
-        <a href="mailto:silvaoyarzunfelipe@gmail.com">silvaoyarzunfelipe@gmail.com</a>
+        <a href="mailto:contacto@eccohouse.cl">contacto@eccohouse.cl</a>
       </div>
     </div>
     <div class="legal">
       <p>Precios de kits solo equipos, IVA incluido. Instalación, flete/paletizado y tramitación SEC se cotizan aparte según proyecto y comuna. Las estimaciones de generación y ahorro son referenciales; la configuración final se valida en visita técnica.</p>
-      <p style="margin-top:8px;">© 2026 ESSOLAR — Todos los derechos reservados.</p>
+      <p style="margin-top:8px;">© 2026 ESOLAR — Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
 
-<script src="js/data.js?v=8"></script>
+<script src="js/data.js?v=9"></script>
 <script>
   const params = new URLSearchParams(location.search);
   const selSistema = document.getElementById("f-sistema");
@@ -110,7 +110,7 @@
   if (params.get("kw")) selKw.value = params.get("kw");
 
   function render() {
-    let lista = ESSOLAR_PRODUCTS.slice();
+    let lista = ESOLAR_PRODUCTS.slice();
     if (selSistema.value) lista = lista.filter(p => p.sistema === selSistema.value);
     if (selKw.value) lista = lista.filter(p => p.inversorKw === parseInt(selKw.value, 10));
     if (kwMin) lista = lista.filter(p => p.inversorKw >= kwMin);
@@ -121,7 +121,7 @@
     if (orden === "kw-asc") lista.sort((a, b) => a.inversorKw - b.inversorKw);
     if (orden === "kw-desc") lista.sort((a, b) => b.inversorKw - a.inversorKw);
 
-    contador.textContent = `Mostrando ${lista.length} de ${ESSOLAR_PRODUCTS.length} kits`;
+    contador.textContent = `Mostrando ${lista.length} de ${ESOLAR_PRODUCTS.length} kits`;
     grid.innerHTML = "";
     lista.forEach(p => {
       const el = document.createElement("div");
