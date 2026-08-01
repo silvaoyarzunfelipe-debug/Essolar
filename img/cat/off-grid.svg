@@ -1,0 +1,95 @@
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inversor híbrido y batería de litio montados en pared">
+  <defs>
+    <linearGradient id="pared" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef1f5"/><stop offset="1" stop-color="#dde3ea"/>
+    </linearGradient>
+    <linearGradient id="pisoG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c3ccd6"/><stop offset="1" stop-color="#9daab8"/>
+    </linearGradient>
+    <linearGradient id="cuerpoBat" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="0.35" stop-color="#f7f9fb"/>
+      <stop offset="0.75" stop-color="#e6ebf1"/><stop offset="1" stop-color="#cdd6df"/>
+    </linearGradient>
+    <linearGradient id="cuerpoInv" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fbfcfd"/><stop offset="0.4" stop-color="#eef2f6"/>
+      <stop offset="1" stop-color="#c8d2dc"/>
+    </linearGradient>
+    <linearGradient id="pantalla" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#123a5c"/><stop offset="1" stop-color="#081c30"/>
+    </linearGradient>
+    <linearGradient id="brilloTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="sombra" x="-30%" y="-30%" width="170%" height="170%">
+      <feDropShadow dx="6" dy="10" stdDeviation="10" flood-color="#0b2540" flood-opacity="0.30"/>
+    </filter>
+    <filter id="sombraSuave" x="-30%" y="-30%" width="170%" height="170%">
+      <feDropShadow dx="3" dy="5" stdDeviation="5" flood-color="#0b2540" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#pared)"/>
+  <rect y="330" width="600" height="70" fill="url(#pisoG)"/>
+  <rect y="326" width="600" height="6" fill="#8d9aa8"/>
+  <ellipse cx="300" cy="352" rx="250" ry="16" fill="#0b2540" opacity="0.10"/>
+
+  <!-- INVERSOR HÍBRIDO (izquierda) -->
+  <g filter="url(#sombra)">
+    <rect x="84" y="66" width="176" height="238" rx="16" fill="url(#cuerpoInv)" stroke="#aab7c4" stroke-width="2"/>
+    <rect x="84" y="66" width="176" height="60" rx="16" fill="url(#brilloTop)"/>
+    <!-- pantalla -->
+    <rect x="110" y="96" width="124" height="72" rx="7" fill="url(#pantalla)" stroke="#2b4f7e" stroke-width="2"/>
+    <text x="172" y="126" text-anchor="middle" fill="#4cc46f" font-size="19" font-weight="700" font-family="Arial, sans-serif">8.0 kW</text>
+    <text x="172" y="148" text-anchor="middle" fill="#8fb3d4" font-size="11" font-family="Arial, sans-serif">GENERANDO</text>
+    <!-- indicadores -->
+    <circle cx="126" cy="192" r="7" fill="#4cc46f"/>
+    <circle cx="126" cy="192" r="12" fill="#4cc46f" opacity="0.22"/>
+    <circle cx="156" cy="192" r="7" fill="#f5a623"/>
+    <circle cx="186" cy="192" r="7" fill="#c3ccd6"/>
+    <!-- rejilla de ventilación -->
+    <g fill="#b9c4cf">
+      <rect x="110" y="216" width="124" height="5" rx="2.5"/>
+      <rect x="110" y="228" width="124" height="5" rx="2.5"/>
+      <rect x="110" y="240" width="124" height="5" rx="2.5"/>
+      <rect x="110" y="252" width="124" height="5" rx="2.5"/>
+    </g>
+    <rect x="110" y="272" width="60" height="18" rx="4" fill="#dfe6ed" stroke="#b9c4cf"/>
+    <text x="140" y="285" text-anchor="middle" fill="#55637a" font-size="9" font-weight="700" font-family="Arial, sans-serif">HÍBRIDO</text>
+  </g>
+
+  <!-- BATERÍA DE LITIO (derecha, modular apilada) -->
+  <g filter="url(#sombra)">
+    <rect x="316" y="52" width="196" height="252" rx="14" fill="url(#cuerpoBat)" stroke="#aab7c4" stroke-width="2"/>
+    <rect x="316" y="52" width="196" height="54" rx="14" fill="url(#brilloTop)"/>
+    <!-- separaciones de módulos apilables -->
+    <line x1="316" y1="128" x2="512" y2="128" stroke="#c3ccd6" stroke-width="2.5"/>
+    <line x1="316" y1="196" x2="512" y2="196" stroke="#c3ccd6" stroke-width="2.5"/>
+    <line x1="316" y1="252" x2="512" y2="252" stroke="#c3ccd6" stroke-width="2.5"/>
+    <!-- franja superior de marca -->
+    <rect x="336" y="72" width="156" height="34" rx="6" fill="#0e2438"/>
+    <text x="414" y="95" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="800" letter-spacing="2" font-family="Arial, sans-serif">LiFePO4</text>
+    <!-- nivel de carga -->
+    <g>
+      <rect x="344" y="146" width="140" height="26" rx="13" fill="#e3e9ef" stroke="#c3ccd6"/>
+      <rect x="347" y="149" width="112" height="20" rx="10" fill="#4cc46f"/>
+      <text x="414" y="164" text-anchor="middle" fill="#0e2438" font-size="12" font-weight="700" font-family="Arial, sans-serif">80%</text>
+    </g>
+    <text x="414" y="228" text-anchor="middle" fill="#0e2438" font-size="27" font-weight="800" font-family="Arial, sans-serif">8,75 kWh</text>
+    <!-- LEDs de estado -->
+    <g>
+      <circle cx="360" cy="278" r="6" fill="#4cc46f"/>
+      <circle cx="382" cy="278" r="6" fill="#4cc46f"/>
+      <circle cx="404" cy="278" r="6" fill="#4cc46f"/>
+      <circle cx="426" cy="278" r="6" fill="#c3ccd6"/>
+      <circle cx="448" cy="278" r="6" fill="#c3ccd6"/>
+    </g>
+  </g>
+
+  <!-- cableado entre equipos -->
+  <path d="M260 250 C 288 250 292 236 316 236" stroke="#2f3a45" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M260 250 C 288 250 292 236 316 236" stroke="#4a5764" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- bajada a canalización -->
+  <path d="M172 304 L172 326" stroke="#2f3a45" stroke-width="8" stroke-linecap="round"/>
+  <path d="M414 304 L414 326" stroke="#2f3a45" stroke-width="8" stroke-linecap="round"/>
+</svg>
